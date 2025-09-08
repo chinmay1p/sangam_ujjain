@@ -1,147 +1,234 @@
-import 'dart:convert';
 import 'package:flutter/foundation.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 import '../models/user_model.dart';
+import '../services/firebase_service.dart';
+import '../services/location_service.dart';
+import '../services/sms_service.dart';
 
 class UserProvider with ChangeNotifier {
   User? _user;
-  List<FamilyMember> _familyMembers = [];
+  List<User> _familyMembers = [];
+  List<User> _pendingFamilyRequests = [];
+  bool _isLoading = false;
 
   User? get user => _user;
-  List<FamilyMember> get familyMembers => _familyMembers;
+  List<User> get familyMembers => _familyMembers;
+  List<User> get pendingFamilyRequests => _pendingFamilyRequests;
+  bool get isLoading => _isLoading;
 
-  // Load user data from SharedPreferences
-  Future<void> loadUserData() async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      final userDataString = prefs.getString('userData');
-      
-      if (userDataString != null) {
-        final userData = jsonDecode(userDataString);
-        _user = User.fromJson(userData);
-        notifyListeners();
-      }
-
-      // Load family members
-      if (_user != null) {
-        await _loadFamilyMembers();
-      }
-    } catch (e) {
-      debugPrint('Error loading user data: $e');
-    }
-  }
-
-  // Save user data to SharedPreferences
-  Future<void> saveUserData(User user) async {
-    try {
-      final prefs = await SharedPreferences.getInstance();
-      final userDataString = jsonEncode(user.toJson());
-      await prefs.setString('userData', userDataString);
-      _user = user;
-      notifyListeners();
-    } catch (e) {
-      debugPrint('Error saving user data: $e');
-    }
+  // Set loading state
+  void _setLoading(bool loading) {
+    _isLoading = loading;
+    notifyListeners();
   }
 
   // Register a new user
-  Future<void> registerUser(String name, String email, String mobile, String id) async {
-    final newUser = User(
-      id: id,
-      name: name,
-      email: email,
-      mobile: mobile,
-    );
-    await saveUserData(newUser);
+  Future<void> registerUser({
+    required String name,
+    required String email,
+    required String mobile,
+    required String password,
+  }) async {
+    try {
+      _setLoading(true);
+      _user = await FirebaseService.registerUser(
+        name: name,
+        email: email,
+        mobile: mobile,
+        password: password,
+      );
+      notifyListeners();
+    } catch (e) {
+      debugPrint('Error registering user: $e');
+      rethrow;
+    } finally {
+      _setLoading(false);
+    }
   }
 
-  // Add family member
-  Future<void> addFamilyMember(String name, String id) async {
-    if (_user == null) return;
-
-    final newMember = FamilyMember(id: id, name: name);
-    _familyMembers.add(newMember);
-    await _saveFamilyMembers();
-    notifyListeners();
+  // Login user
+  Future<void> loginUser({
+    required String email,
+    required String password,
+  }) async {
+    try {
+      _setLoading(true);
+      _user = await FirebaseService.loginUser(
+        email: email,
+        password: password,
+      );
+      
+      // Load family data
+      await _loadFamilyData();
+      notifyListeners();
+    } catch (e) {
+      debugPrint('Error logging in user: $e');
+      rethrow;
+    } finally {
+      _setLoading(false);
+    }
   }
 
-  // Remove family member
-  Future<void> removeFamilyMember(String id) async {
+  // Load family data (members and pending requests)
+  Future<void> _loadFamilyData() async {
     if (_user == null) return;
 
-    _familyMembers.removeWhere((member) => member.id == id);
-    await _saveFamilyMembers();
-    notifyListeners();
+    try {
+      _familyMembers = await FirebaseService.getFamilyMembers(_user!.id);
+      _pendingFamilyRequests = await FirebaseService.getPendingFamilyRequests(_user!.id);
+      notifyListeners();
+    } catch (e) {
+      debugPrint('Error loading family data: $e');
+    }
+  }
+
+  // Send family request
+  Future<void> sendFamilyRequest(String sangamId) async {
+    if (_user == null) return;
+
+    try {
+      _setLoading(true);
+      await FirebaseService.sendFamilyRequest(
+        fromUserId: _user!.id,
+        toSangamId: sangamId,
+      );
+    } catch (e) {
+      debugPrint('Error sending family request: $e');
+      rethrow;
+    } finally {
+      _setLoading(false);
+    }
+  }
+
+  // Approve family request
+  Future<void> approveFamilyRequest(String requesterId) async {
+    if (_user == null) return;
+
+    try {
+      _setLoading(true);
+      await FirebaseService.approveFamilyRequest(
+        approverUserId: _user!.id,
+        requesterUserId: requesterId,
+      );
+      
+      // Reload family data
+      await _loadFamilyData();
+    } catch (e) {
+      debugPrint('Error approving family request: $e');
+      rethrow;
+    } finally {
+      _setLoading(false);
+    }
+  }
+
+  // Reject family request
+  Future<void> rejectFamilyRequest(String requesterId) async {
+    if (_user == null) return;
+
+    try {
+      _setLoading(true);
+      await FirebaseService.rejectFamilyRequest(
+        approverUserId: _user!.id,
+        requesterUserId: requesterId,
+      );
+      
+      // Reload family data
+      await _loadFamilyData();
+    } catch (e) {
+      debugPrint('Error rejecting family request: $e');
+      rethrow;
+    } finally {
+      _setLoading(false);
+    }
   }
 
   // Increment punya score
   Future<void> incrementPunya(int points) async {
     if (_user == null) return;
 
-    final updatedUser = _user!.copyWith(punya: _user!.punya + points);
-    await saveUserData(updatedUser);
+    try {
+      final updatedUser = _user!.copyWith(punya: _user!.punya + points);
+      await FirebaseService.updateUser(updatedUser);
+      _user = updatedUser;
+      notifyListeners();
+    } catch (e) {
+      debugPrint('Error incrementing punya: $e');
+    }
   }
 
   // Add badge
   Future<void> addBadge(String badge) async {
     if (_user == null) return;
 
-    final updatedBadges = List<String>.from(_user!.badges);
-    if (!updatedBadges.contains(badge)) {
-      updatedBadges.add(badge);
-      final updatedUser = _user!.copyWith(badges: updatedBadges);
-      await saveUserData(updatedUser);
-    }
-  }
-
-  // Load family members from SharedPreferences
-  Future<void> _loadFamilyMembers() async {
-    if (_user == null) return;
-
     try {
-      final prefs = await SharedPreferences.getInstance();
-      final familyDataString = prefs.getString('family_${_user!.id}');
-      
-      if (familyDataString != null) {
-        final familyData = jsonDecode(familyDataString) as List;
-        _familyMembers = familyData
-            .map((member) => FamilyMember.fromJson(member))
-            .toList();
+      final updatedBadges = List<String>.from(_user!.badges);
+      if (!updatedBadges.contains(badge)) {
+        updatedBadges.add(badge);
+        final updatedUser = _user!.copyWith(badges: updatedBadges);
+        await FirebaseService.updateUser(updatedUser);
+        _user = updatedUser;
         notifyListeners();
       }
     } catch (e) {
-      debugPrint('Error loading family members: $e');
+      debugPrint('Error adding badge: $e');
     }
   }
 
-  // Save family members to SharedPreferences
-  Future<void> _saveFamilyMembers() async {
-    if (_user == null) return;
+  // Send SOS SMS to family members
+  Future<void> sendSOSSMS({String? customMessage}) async {
+    if (_user == null || _familyMembers.isEmpty) return;
 
     try {
-      final prefs = await SharedPreferences.getInstance();
-      final familyData = _familyMembers.map((member) => member.toJson()).toList();
-      final familyDataString = jsonEncode(familyData);
-      await prefs.setString('family_${_user!.id}', familyDataString);
+      _setLoading(true);
+      await SMSService.sendSOSSMS(
+        user: _user!,
+        familyMembers: _familyMembers,
+        customMessage: customMessage,
+      );
     } catch (e) {
-      debugPrint('Error saving family members: $e');
+      debugPrint('Error sending SOS SMS: $e');
+      rethrow;
+    } finally {
+      _setLoading(false);
     }
   }
 
-  // Clear user data (for logout)
-  Future<void> clearUserData() async {
+  // Request location permission
+  Future<bool> requestLocationPermission() async {
     try {
-      final prefs = await SharedPreferences.getInstance();
-      await prefs.remove('userData');
-      if (_user != null) {
-        await prefs.remove('family_${_user!.id}');
-      }
+      return await LocationService.requestLocationPermission();
+    } catch (e) {
+      debugPrint('Error requesting location permission: $e');
+      return false;
+    }
+  }
+
+  // Check if location permission is granted
+  Future<bool> isLocationPermissionGranted() async {
+    try {
+      return await LocationService.isLocationPermissionGranted();
+    } catch (e) {
+      debugPrint('Error checking location permission: $e');
+      return false;
+    }
+  }
+
+  // Logout
+  Future<void> logout() async {
+    try {
+      await FirebaseService.logout();
       _user = null;
       _familyMembers.clear();
+      _pendingFamilyRequests.clear();
       notifyListeners();
     } catch (e) {
-      debugPrint('Error clearing user data: $e');
+      debugPrint('Error logging out: $e');
     }
   }
+
+  // Check if user is logged in
+  bool get isLoggedIn => _user != null;
+
+  // Get user's SANGAM ID
+  String? get sangamId => _user?.id;
 }
 

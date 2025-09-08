@@ -21,6 +21,12 @@ class _MainScreenState extends State<MainScreen> {
     const ProfileScreen(),
   ];
 
+  void navigateToTab(int index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

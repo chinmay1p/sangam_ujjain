@@ -150,7 +150,8 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            IconButton(
+                            Flexible(
+                              child: IconButton(
                               icon: const Icon(Icons.copy),
                               onPressed: () {
                                 Clipboard.setData(ClipboardData(text: user.id));
@@ -161,7 +162,7 @@ class ProfileScreen extends StatelessWidget {
                                   ),
                                 );
                               },
-                            ),
+                            )),
                           ],
                         ),
                       ),
@@ -198,24 +199,29 @@ class ProfileScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Row(
-                            children: [
-                              Icon(
-                                Icons.family_restroom,
-                                color: Colors.green.shade600,
-                              ),
-                              const SizedBox(width: 8),
-                              Text(
-                                'Family Members',
-                                style: TextStyle(
-                                  fontSize: 18,
-                                  fontWeight: FontWeight.bold,
-                                  color: Colors.green.shade700,
+                          Expanded(
+                            child: Row(
+                              children: [
+                                Icon(
+                                  Icons.family_restroom,
+                                  color: Colors.green.shade600,
                                 ),
-                              ),
-                            ],
+                                const SizedBox(width: 8),
+                                Expanded(
+                                  child: Text(
+                                    'Family Members',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                      color: Colors.green.shade700,
+                                    ),
+                                    maxLines: 1,
+                                    overflow: TextOverflow.ellipsis,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                           TextButton.icon(
                             onPressed: () {
@@ -473,7 +479,7 @@ class ProfileScreen extends StatelessWidget {
               onPressed: () async {
                 Navigator.of(context).pop();
                 final userProvider = Provider.of<UserProvider>(context, listen: false);
-                await userProvider.clearUserData();
+                await userProvider.logout();
                 // The app will automatically navigate to login screen
                 // due to the FutureBuilder in main.dart
               },

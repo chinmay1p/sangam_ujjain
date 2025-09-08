@@ -31,8 +31,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
 
     try {
       final userProvider = Provider.of<UserProvider>(context, listen: false);
-      await userProvider.addFamilyMember(
-        _nameController.text.trim(),
+      await userProvider.sendFamilyRequest(
         _idController.text.trim(),
       );
 
@@ -41,7 +40,7 @@ class _FamilyScreenState extends State<FamilyScreen> {
         _idController.clear();
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('${_nameController.text} added to family!'),
+            content: Text('Family request sent to ${_idController.text}!'),
             backgroundColor: Colors.green,
           ),
         );
@@ -91,7 +90,8 @@ class _FamilyScreenState extends State<FamilyScreen> {
     if (confirmed == true) {
       try {
         final userProvider = Provider.of<UserProvider>(context, listen: false);
-        await userProvider.removeFamilyMember(memberId);
+        // Note: Family member removal is not implemented in the new system
+        // Users can only be added through the approval system
         
         if (mounted) {
           ScaffoldMessenger.of(context).showSnackBar(
