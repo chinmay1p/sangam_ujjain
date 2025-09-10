@@ -3,82 +3,112 @@
 {% block title %}Login - S.A.N.G.A.M{% endblock %}
 
 {% block content %}
-<div class="min-h-screen flex items-center justify-center bg-orange-50">
-    <div class="max-w-md w-full space-y-8 p-8">
-        <!-- App Logo/Title -->
+<div class="min-h-screen flex items-center justify-center bg-gradient-to-br from-indigo-50 via-purple-50 to-orange-50 animate-fade-in">
+    <div class="max-w-lg w-full space-y-10 p-8">
+        <!-- Enhanced App Logo/Title -->
         <div class="text-center">
-            <div class="bg-orange-100 rounded-2xl p-6 mb-8">
-                <div class="flex justify-center mb-4">
-                    <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="SANGAM Logo" class="w-16 h-16 rounded-full">
+            <div class="card-modern p-10 mb-10 shadow-glow hover:shadow-colored">
+                <div class="relative mb-6">
+                    <div class="absolute inset-0 bg-gradient-primary rounded-full blur-lg opacity-30 animate-pulse-slow"></div>
+                    <div class="relative w-24 h-24 mx-auto glass-effect rounded-full p-4 shadow-glow animate-float">
+                        <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="SANGAM Logo" class="w-full h-full rounded-full object-cover">
+                    </div>
                 </div>
-                <h1 class="text-3xl font-bold text-orange-800 font-playfair">S.A.N.G.A.M</h1>
-                <p class="text-orange-700 text-sm mt-2 font-poppins">Smart Assistant for Navigation, Guidance, And Management</p>
+                <h1 class="text-4xl font-bold text-gradient font-playfair mb-3">S.A.N.G.A.M</h1>
+                <div class="w-16 h-1 bg-gradient-primary mx-auto mb-4 rounded-full"></div>
+                <p class="text-gray-600 text-lg font-medium font-poppins">Smart Assistant for Navigation, Guidance, And Management</p>
             </div>
         </div>
 
-        <!-- Mode Toggle -->
-        <div class="bg-white rounded-xl border border-orange-200 p-2 flex">
-            <button id="loginTab" class="flex-1 py-3 text-center rounded-lg font-semibold transition-all duration-200 bg-orange-600 text-white">
-                Login
-            </button>
-            <button id="registerTab" class="flex-1 py-3 text-center rounded-lg font-semibold transition-all duration-200 text-orange-600">
-                Register
-            </button>
+        <!-- Enhanced Mode Toggle -->
+        <div class="card-modern p-3 shadow-medium">
+            <div class="flex bg-gray-100 rounded-xl p-1">
+                <button id="loginTab" class="flex-1 py-4 text-center rounded-lg font-bold text-lg transition-all duration-300 bg-gradient-primary text-white shadow-glow">
+                    <i class="fas fa-sign-in-alt mr-2"></i>Login
+                </button>
+                <button id="registerTab" class="flex-1 py-4 text-center rounded-lg font-bold text-lg transition-all duration-300 text-gray-600 hover:text-primary-orange">
+                    <i class="fas fa-user-plus mr-2"></i>Register
+                </button>
+            </div>
         </div>
 
-        <!-- Login Form -->
-        <form id="loginForm" class="space-y-6">
-            <div>
-                <input type="email" id="loginEmail" required 
-                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 bg-white"
-                       placeholder="Email">
+        <!-- Enhanced Login Form -->
+        <form id="loginForm" class="space-y-8">
+            <div class="space-y-6">
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <i class="fas fa-envelope text-gray-400 text-lg"></i>
+                    </div>
+                    <input type="email" id="loginEmail" required 
+                           class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-orange-200 focus:border-primary-orange bg-white text-lg font-medium transition-all duration-300"
+                           placeholder="Enter your email">
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <i class="fas fa-lock text-gray-400 text-lg"></i>
+                    </div>
+                    <input type="password" id="loginPassword" required 
+                           class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-orange-200 focus:border-primary-orange bg-white text-lg font-medium transition-all duration-300"
+                           placeholder="Enter your password">
+                </div>
             </div>
-            <div>
-                <input type="password" id="loginPassword" required 
-                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 bg-white"
-                       placeholder="Password">
-            </div>
-            <button type="submit" 
-                    class="w-full bg-orange-600 text-white py-3 px-4 rounded-xl font-semibold hover:bg-orange-700 transition-colors duration-200">
-                Login to S.A.N.G.A.M
+            <button type="submit" class="btn-primary w-full py-4 text-xl font-bold shadow-glow hover:shadow-colored">
+                <i class="fas fa-rocket mr-3"></i>
+                Enter S.A.N.G.A.M
             </button>
         </form>
 
-        <!-- Register Form -->
-        <form id="registerForm" class="space-y-6 hidden">
-            <div>
-                <input type="text" id="registerName" required 
-                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 bg-white"
-                       placeholder="Full Name">
+        <!-- Enhanced Register Form -->
+        <form id="registerForm" class="space-y-8 hidden">
+            <div class="space-y-6">
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <i class="fas fa-user text-gray-400 text-lg"></i>
+                    </div>
+                    <input type="text" id="registerName" required 
+                           class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-purple-200 focus:border-vibrant-purple bg-white text-lg font-medium transition-all duration-300"
+                           placeholder="Enter your full name">
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <i class="fas fa-phone text-gray-400 text-lg"></i>
+                    </div>
+                    <input type="tel" id="registerMobile" required 
+                           class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-purple-200 focus:border-vibrant-purple bg-white text-lg font-medium transition-all duration-300"
+                           placeholder="Enter mobile number">
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <i class="fas fa-envelope text-gray-400 text-lg"></i>
+                    </div>
+                    <input type="email" id="registerEmail" required 
+                           class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-purple-200 focus:border-vibrant-purple bg-white text-lg font-medium transition-all duration-300"
+                           placeholder="Enter your email">
+                </div>
+                <div class="relative">
+                    <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
+                        <i class="fas fa-lock text-gray-400 text-lg"></i>
+                    </div>
+                    <input type="password" id="registerPassword" required 
+                           class="w-full pl-12 pr-4 py-4 border-2 border-gray-200 rounded-2xl focus:ring-4 focus:ring-purple-200 focus:border-vibrant-purple bg-white text-lg font-medium transition-all duration-300"
+                           placeholder="Create password (min 6 characters)">
+                </div>
             </div>
-            <div>
-                <input type="tel" id="registerMobile" required 
-                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 bg-white"
-                       placeholder="Mobile Number">
-            </div>
-            <div>
-                <input type="email" id="registerEmail" required 
-                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 bg-white"
-                       placeholder="Email">
-            </div>
-            <div>
-                <input type="password" id="registerPassword" required 
-                       class="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 bg-white"
-                       placeholder="Password (min 6 characters)">
-            </div>
-            <button type="submit" 
-                    class="w-full bg-orange-600 text-white py-3 px-4 rounded-xl font-semibold hover:bg-orange-700 transition-colors duration-200">
-                Register & Enter S.A.N.G.A.M
+            <button type="submit" class="btn-modern w-full py-4 text-xl font-bold shadow-glow hover:shadow-colored">
+                <i class="fas fa-user-plus mr-3"></i>
+                Join S.A.N.G.A.M
             </button>
         </form>
 
-        <!-- Info Card -->
-        <div class="bg-blue-50 border border-blue-200 rounded-xl p-4">
-            <div class="flex items-center mb-2">
-                <i class="fas fa-info-circle text-blue-700 mr-2"></i>
-                <span class="font-semibold text-blue-700">About S.A.N.G.A.M</span>
+        <!-- Enhanced Info Card -->
+        <div class="card-modern p-6 bg-gradient-to-br from-blue-50 to-indigo-50 border-l-4 border-blue-500">
+            <div class="flex items-center mb-4">
+                <div class="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center mr-3">
+                    <i class="fas fa-info-circle text-white text-lg"></i>
+                </div>
+                <span class="font-bold text-xl text-blue-700">About S.A.N.G.A.M</span>
             </div>
-            <p class="text-blue-600 text-sm" id="infoText">
+            <p class="text-blue-700 text-lg leading-relaxed" id="infoText">
                 Login with your email and password to access your S.A.N.G.A.M account.
             </p>
         </div>

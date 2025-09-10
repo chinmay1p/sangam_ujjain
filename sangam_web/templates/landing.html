@@ -3,160 +3,211 @@
 {% block title %}S.A.N.G.A.M - Smart Assistant for Navigation, Guidance, And Management{% endblock %}
 
 {% block content %}
-<div class="min-h-screen bg-gradient-to-br from-orange-50 to-amber-50">
-    <!-- Hero Section -->
+<div class="min-h-screen bg-gradient-to-br from-slate-50 via-orange-50 to-amber-50">
+    <!-- Enhanced Hero Section -->
     <section class="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <!-- Background with parallax effect -->
+        <!-- Enhanced Background with modern overlay -->
         <div class="absolute inset-0 bg-cover bg-center bg-no-repeat" style="background-image: url('{{ url_for('static', filename='assets/ujjain_city_1.png') }}');">
-            <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70"></div>
+            <div class="absolute inset-0 bg-gradient-to-br from-indigo-900/60 via-purple-900/70 to-orange-900/80"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
         </div>
         
-        <!-- Hero Content -->
-        <div class="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
-            <!-- Logo -->
-            <div class="mb-8">
-                <div class="w-32 h-32 mx-auto bg-white/10 backdrop-blur-md rounded-full p-6 shadow-glow">
-                    <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Sangam Logo" class="w-full h-full rounded-full object-cover">
+        <!-- Enhanced Hero Content -->
+        <div class="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto animate-slide-up">
+            <!-- Enhanced Logo -->
+            <div class="mb-12">
+                <div class="relative w-40 h-40 mx-auto">
+                    <div class="absolute inset-0 bg-gradient-primary rounded-full blur-xl opacity-40 animate-pulse-slow"></div>
+                    <div class="relative w-full h-full glass-effect rounded-full p-8 shadow-glow animate-float">
+                        <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Sangam Logo" class="w-full h-full rounded-full object-cover">
+                    </div>
                 </div>
             </div>
             
-            <!-- Main Heading -->
-            <h1 class="text-5xl md:text-7xl font-cinzel font-bold mb-6">
-                <span class="text-gradient">S.A.N.G.A.M</span>
+            <!-- Enhanced Main Heading -->
+            <h1 class="text-6xl md:text-8xl font-cinzel font-bold mb-8 animate-bounce-soft">
+                <span class="text-gradient bg-clip-text text-transparent bg-gradient-to-r from-orange-400 via-yellow-300 to-orange-500">S.A.N.G.A.M</span>
             </h1>
             
-            <!-- Subtitle -->
-            <p class="text-xl md:text-3xl font-playfair mb-4 text-gray-200">
-                Smart Assistant for Navigation, Guidance, And Management
-            </p>
-            
-            <!-- Description -->
-            <p class="text-lg md:text-xl mb-8 text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                Your digital companion for the sacred journey to Ujjain. Experience the spiritual energy of Mahakaleshwar Jyotirlinga and prepare for Kumbh Mela 2028.
-            </p>
-            
-            <!-- CTA Buttons -->
-            <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-                <a href="/login" class="bg-primary-orange hover:bg-orange-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-glow">
-                    <i class="fas fa-sign-in-alt mr-2"></i>
-                    Enter S.A.N.G.A.M
-                </a>
-                <a href="#about" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300">
-                    <i class="fas fa-info-circle mr-2"></i>
-                    Learn More
-                </a>
+            <!-- Enhanced Subtitle -->
+            <div class="mb-6">
+                <p class="text-2xl md:text-4xl font-playfair mb-2 text-white font-semibold">
+                    Smart Assistant for Navigation, Guidance, And Management
+                </p>
+                <div class="w-32 h-1 bg-gradient-primary mx-auto rounded-full"></div>
             </div>
+            
+            <!-- Enhanced Description -->
+            <p class="text-xl md:text-2xl mb-12 text-gray-100 max-w-4xl mx-auto leading-relaxed font-medium">
+                Your digital companion for the sacred journey to Ujjain. Experience the spiritual energy of Mahakaleshwar Jyotirlinga and prepare for <span class="text-gradient-sunset font-bold">Kumbh Mela 2028</span>.
+            </p>
+            
+            <!-- Enhanced CTA Buttons -->
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center mb-16">
+                <button class="btn-primary px-10 py-5 text-xl font-bold shadow-glow hover:shadow-colored" onclick="window.location.href='/login'">
+                    <i class="fas fa-rocket mr-3 text-xl"></i>
+                    Enter S.A.N.G.A.M
+                </button>
+                <button class="btn-glass px-10 py-5 text-xl font-semibold" onclick="document.getElementById('about').scrollIntoView({behavior: 'smooth'})">
+                    <i class="fas fa-compass mr-3 text-xl"></i>
+                    Explore Journey
+                </button>
+            </div>
+            
+            <!-- Floating Elements -->
+            <div class="absolute top-20 left-10 w-20 h-20 bg-gradient-secondary rounded-full opacity-20 animate-float" style="animation-delay: -2s;"></div>
+            <div class="absolute bottom-32 right-16 w-16 h-16 bg-gradient-sunset rounded-full opacity-30 animate-float" style="animation-delay: -4s;"></div>
+            <div class="absolute top-1/2 left-20 w-12 h-12 bg-gradient-success rounded-full opacity-25 animate-float" style="animation-delay: -1s;"></div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
+    <!-- Enhanced About Section -->
+    <section id="about" class="py-24 bg-gradient-to-br from-white via-orange-50 to-purple-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-cinzel font-bold text-gray-900 mb-6">
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-cinzel font-bold text-gray-900 mb-8">
                     About <span class="text-gradient">S.A.N.G.A.M</span>
                 </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                <div class="w-24 h-1 bg-gradient-primary mx-auto mb-6 rounded-full"></div>
+                <p class="text-2xl text-gray-700 max-w-4xl mx-auto font-medium">
                     Your comprehensive digital companion for spiritual journeys in Ujjain
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- Home Module -->
-                <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-6 shadow-custom card-hover border border-orange-100">
-                    <div class="w-16 h-16 bg-orange-600/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-home text-orange-600 text-2xl"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
+                <!-- Enhanced Home Module -->
+                <div class="card-modern p-8 shadow-glow hover:shadow-colored group">
+                    <div class="relative mb-8">
+                        <div class="w-20 h-20 bg-gradient-to-br from-orange-400 to-red-500 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-home text-white text-3xl"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-primary rounded-full animate-pulse-slow"></div>
                     </div>
-                    <h3 class="text-xl font-playfair font-bold text-gray-900 mb-4">Home</h3>
-                    <p class="text-gray-600 mb-4">Your spiritual dashboard with quick access to navigation, family tracking, and emergency services.</p>
+                    <h3 class="text-2xl font-playfair font-bold text-gray-900 mb-4">Home</h3>
+                    <p class="text-gray-700 mb-6 leading-relaxed">Your spiritual dashboard with quick access to navigation, family tracking, and emergency services.</p>
+                    <div class="w-full h-1 bg-gradient-to-r from-orange-400 to-red-500 rounded-full"></div>
                 </div>
                 
-                <!-- Sanskrti Module -->
-                <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-6 shadow-custom card-hover border border-purple-100">
-                    <div class="w-16 h-16 bg-purple-600/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-temple text-purple-600 text-2xl"></i>
+                <!-- Enhanced Sanskrti Module -->
+                <div class="card-modern p-8 shadow-glow hover:shadow-colored group">
+                    <div class="relative mb-8">
+                        <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-om text-white text-3xl"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-secondary rounded-full animate-pulse-slow"></div>
                     </div>
-                    <h3 class="text-xl font-playfair font-bold text-gray-900 mb-4">Sanskrti</h3>
-                    <p class="text-gray-600 mb-4">Discover sacred landmarks, temples, and cultural heritage sites with digital punya tracking.</p>
+                    <h3 class="text-2xl font-playfair font-bold text-gray-900 mb-4">Sanskrti</h3>
+                    <p class="text-gray-700 mb-6 leading-relaxed">Discover sacred landmarks, temples, and cultural heritage sites with digital punya tracking.</p>
+                    <div class="w-full h-1 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full"></div>
                 </div>
                 
-                <!-- Seva Module -->
-                <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-6 shadow-custom card-hover border border-green-100">
-                    <div class="w-16 h-16 bg-green-600/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-hands-helping text-green-600 text-2xl"></i>
+                <!-- Enhanced Seva Module -->
+                <div class="card-modern p-8 shadow-glow hover:shadow-colored group">
+                    <div class="relative mb-8">
+                        <div class="w-20 h-20 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-hands-helping text-white text-3xl"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-6 h-6 bg-gradient-success rounded-full animate-pulse-slow"></div>
                     </div>
-                    <h3 class="text-xl font-playfair font-bold text-gray-900 mb-4">Seva</h3>
-                    <p class="text-gray-600 mb-4">Participate in selfless service activities and earn spiritual merit through acts of kindness.</p>
+                    <h3 class="text-2xl font-playfair font-bold text-gray-900 mb-4">Seva</h3>
+                    <p class="text-gray-700 mb-6 leading-relaxed">Participate in selfless service activities and earn spiritual merit through acts of kindness.</p>
+                    <div class="w-full h-1 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full"></div>
                 </div>
                 
-                <!-- Profile Module -->
-                <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 shadow-custom card-hover border border-blue-100">
-                    <div class="w-16 h-16 bg-blue-600/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-user text-blue-600 text-2xl"></i>
+                <!-- Enhanced Profile Module -->
+                <div class="card-modern p-8 shadow-glow hover:shadow-colored group">
+                    <div class="relative mb-8">
+                        <div class="w-20 h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-3xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300">
+                            <i class="fas fa-user-circle text-white text-3xl"></i>
+                        </div>
+                        <div class="absolute -top-2 -right-2 w-6 h-6 bg-electric-blue rounded-full animate-pulse-slow"></div>
                     </div>
-                    <h3 class="text-xl font-playfair font-bold text-gray-900 mb-4">Profile</h3>
-                    <p class="text-gray-600 mb-4">Track your spiritual journey, badges, and connect with your family group.</p>
+                    <h3 class="text-2xl font-playfair font-bold text-gray-900 mb-4">Profile</h3>
+                    <p class="text-gray-700 mb-6 leading-relaxed">Track your spiritual journey, badges, and connect with your family group.</p>
+                    <div class="w-full h-1 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Features Section -->
-    <section id="features" class="py-20 bg-gradient-to-br from-orange-50 to-amber-50">
+    <!-- Enhanced Features Section -->
+    <section id="features" class="py-24 bg-gradient-to-br from-purple-50 via-blue-50 to-indigo-50">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl md:text-5xl font-cinzel font-bold text-gray-900 mb-6">
-                    Key <span class="text-gradient">Features</span>
+            <div class="text-center mb-20">
+                <h2 class="text-5xl md:text-6xl font-cinzel font-bold text-gray-900 mb-8">
+                    Key <span class="text-gradient-secondary">Features</span>
                 </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                <div class="w-24 h-1 bg-gradient-secondary mx-auto mb-6 rounded-full"></div>
+                <p class="text-2xl text-gray-700 max-w-4xl mx-auto font-medium">
                     Everything you need for a safe and spiritual journey
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Digital Punya Tracking -->
-                <div class="bg-white rounded-2xl p-8 shadow-custom card-hover">
-                    <div class="w-16 h-16 bg-primary-orange/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-trophy text-primary-orange text-2xl"></i>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+                <!-- Enhanced Digital Punya Tracking -->
+                <div class="card-modern p-10 shadow-glow hover:shadow-colored group">
+                    <div class="relative mb-8">
+                        <div class="w-24 h-24 bg-gradient-to-br from-yellow-400 to-orange-500 rounded-3xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-500">
+                            <i class="fas fa-trophy text-white text-4xl"></i>
+                        </div>
+                        <div class="absolute -top-3 -right-3 w-8 h-8 bg-gradient-sunset rounded-full animate-bounce-soft"></div>
                     </div>
-                    <h3 class="text-xl font-playfair font-bold text-gray-900 mb-4">Digital Punya Tracking</h3>
-                    <p class="text-gray-600">Track your spiritual merit through temple visits and seva activities.</p>
+                    <h3 class="text-2xl font-playfair font-bold text-gray-900 mb-6">Digital Punya Tracking</h3>
+                    <p class="text-gray-700 text-lg leading-relaxed">Track your spiritual merit through temple visits and seva activities with our innovative digital system.</p>
                 </div>
                 
-                <!-- Family Safety -->
-                <div class="bg-white rounded-2xl p-8 shadow-custom card-hover">
-                    <div class="w-16 h-16 bg-blue-600/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-users text-blue-600 text-2xl"></i>
+                <!-- Enhanced Family Safety -->
+                <div class="card-modern p-10 shadow-glow hover:shadow-colored group">
+                    <div class="relative mb-8">
+                        <div class="w-24 h-24 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-3xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-500">
+                            <i class="fas fa-shield-alt text-white text-4xl"></i>
+                        </div>
+                        <div class="absolute -top-3 -right-3 w-8 h-8 bg-gradient-secondary rounded-full animate-bounce-soft"></div>
                     </div>
-                    <h3 class="text-xl font-playfair font-bold text-gray-900 mb-4">Family Safety</h3>
-                    <p class="text-gray-600">Real-time location sharing and emergency alerts for family groups.</p>
+                    <h3 class="text-2xl font-playfair font-bold text-gray-900 mb-6">Family Safety</h3>
+                    <p class="text-gray-700 text-lg leading-relaxed">Real-time location sharing and emergency alerts to keep your family connected and safe during the pilgrimage.</p>
                 </div>
                 
-                <!-- AI Spiritual Guide -->
-                <div class="bg-white rounded-2xl p-8 shadow-custom card-hover">
-                    <div class="w-16 h-16 bg-purple-600/10 rounded-2xl flex items-center justify-center mb-6">
-                        <i class="fas fa-robot text-purple-600 text-2xl"></i>
+                <!-- Enhanced AI Spiritual Guide -->
+                <div class="card-modern p-10 shadow-glow hover:shadow-colored group">
+                    <div class="relative mb-8">
+                        <div class="w-24 h-24 bg-gradient-to-br from-purple-500 to-pink-500 rounded-3xl flex items-center justify-center mb-6 group-hover:rotate-12 transition-transform duration-500">
+                            <i class="fas fa-brain text-white text-4xl"></i>
+                        </div>
+                        <div class="absolute -top-3 -right-3 w-8 h-8 bg-gradient-primary rounded-full animate-bounce-soft"></div>
                     </div>
-                    <h3 class="text-xl font-playfair font-bold text-gray-900 mb-4">AI Spiritual Guide</h3>
-                    <p class="text-gray-600">24/7 guidance on rituals, temple information, and pilgrimage planning.</p>
+                    <h3 class="text-2xl font-playfair font-bold text-gray-900 mb-6">AI Spiritual Guide</h3>
+                    <p class="text-gray-700 text-lg leading-relaxed">24/7 intelligent guidance on rituals, temple information, and personalized pilgrimage planning.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- CTA Section -->
-    <section class="py-20 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white">
-        <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-4xl md:text-5xl font-cinzel font-bold mb-6">
-                Begin Your Sacred <span class="text-accent-gold">Journey</span>
+    <!-- Enhanced CTA Section -->
+    <section class="py-28 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white relative overflow-hidden">
+        <!-- Floating Background Elements -->
+        <div class="absolute top-10 left-10 w-32 h-32 bg-gradient-primary rounded-full opacity-10 animate-float"></div>
+        <div class="absolute bottom-20 right-20 w-24 h-24 bg-gradient-secondary rounded-full opacity-15 animate-float" style="animation-delay: -3s;"></div>
+        <div class="absolute top-1/2 left-1/4 w-16 h-16 bg-gradient-sunset rounded-full opacity-20 animate-float" style="animation-delay: -1.5s;"></div>
+        
+        <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+            <h2 class="text-6xl md:text-7xl font-cinzel font-bold mb-8">
+                Begin Your Sacred <span class="text-gradient-sunset">Journey</span>
             </h2>
-            <p class="text-xl text-gray-200 mb-8">
-                Join thousands of pilgrims using S.A.N.G.A.M for their spiritual journey to Ujjain
+            <div class="w-32 h-1 bg-gradient-sunset mx-auto mb-8 rounded-full"></div>
+            <p class="text-2xl text-gray-200 mb-12 max-w-3xl mx-auto leading-relaxed">
+                Join thousands of pilgrims using S.A.N.G.A.M for their transformative spiritual journey to Ujjain
             </p>
-            <a href="/login" class="bg-accent-gold hover:bg-yellow-600 text-gray-900 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 inline-block">
-                <i class="fas fa-sign-in-alt mr-2"></i>
-                Get Started Now
-            </a>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                <button class="btn-primary px-12 py-6 text-2xl font-bold shadow-glow hover:shadow-colored" onclick="window.location.href='/login'">
+                    <i class="fas fa-rocket mr-3 text-2xl"></i>
+                    Get Started Now
+                </button>
+                <button class="btn-glass px-12 py-6 text-2xl font-semibold" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">
+                    <i class="fas fa-arrow-up mr-3 text-2xl"></i>
+                    Back to Top
+                </button>
+            </div>
         </div>
     </section>
 </div>
