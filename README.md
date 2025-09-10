@@ -1,4 +1,4 @@
-# 🕉️ S.A.N.G.A.M - Spiritual And Navigation Guide for Authentic Mahakumbh
+# 🕉️ S.A.N.G.A.M - Smart Assistant for Navigation, Guidance, And Management
 
 **S.A.N.G.A.M** is a comprehensive digital platform designed to enhance the spiritual journey of pilgrims during the Ujjain Mahakumbh 2028. The project consists of both a Flutter mobile application and a Flask web application, providing seamless access across multiple platforms.
 
