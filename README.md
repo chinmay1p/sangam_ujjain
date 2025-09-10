@@ -21,44 +21,24 @@ S.A.N.G.A.M serves as a complete digital companion for the Ujjain Mahakumbh, off
 ## ✨ Key Features
 
 ### 🏛️ **Sanskrti Module** - Spiritual Heritage
-- **Sacred Landmarks**: Detailed information about 6+ major spiritual sites
-  - Mahakaleshwar Temple (Jyotirlinga)
-  - Ram Ghat (Sacred bathing ghat)
-  - Harsiddhi Temple (Shakti Peeth)
-  - Kal Bhairav Temple (Guardian deity)
-  - Sandipani Ashram (Ancient school of Krishna)
-  - Shipra River (Sacred river)
+- **Sacred Landmarks**: Detailed information about 6+ major spiritual sites  
 - **Interactive Stories**: Rich narratives about each location's spiritual significance
 - **Video Content**: YouTube integration for virtual tours
 - **Punya Tracking**: Earn spiritual merit points for visits
 - **Visit Tracking**: Mark and track visited sacred places
 
 ### 🤝 **Seva Module** - Community Service
-- **6 Service Categories**: 
-  - Jal Seva (Water Service) - 10 punya points
-  - Swachh Seva (Cleanup Drive) - 15 punya points  
-  - Ann Seva (Food Distribution) - 20 punya points
-  - Marg Darshan (Crowd Guidance) - 12 punya points
-  - Vriddha Seva (Elderly Assistance) - 25 punya points
-  - Mandir Seva (Temple Cleaning) - 18 punya points
 - **Badge System**: Earn service badges for completed seva
 - **Progress Tracking**: Monitor community service contributions
 - **Real-time Updates**: Live seva opportunities and locations
 
 ### 🏠 **Home Module**
-- **Mahakumbh 2028 Schedule**: Complete event calendar with 9 major events
-  - Opening Ceremony (March 27, 2028)
-  - Mesha Sankranti (April 13, 2028)
-  - Three Shahi Snans (April 22, May 6, May 21, 2028)
-  - Akshaya Tritiya Snan (May 9, 2028)
-  - Parva Snan (May 11, 2028)
-  - Ekadashi & Pradosh Snan (May 17, 2028)
-  - Closing Ceremony (May 27, 2028)
+- **Mahakumbh 2028 Schedule**: Complete event calendar with 9 major events  
 - **User Dashboard**: Personal punya points, badges, and progress
 - **Quick Access**: Navigation to all major features
 
 ### 📖 **Sacred Streams Story Module**
-- **Interactive Storytelling**: 8-scene animated story about Ujjain Mahakumbh
+- **Interactive Storytelling**: Animated story about Ujjain Mahakumbh
 - **GSAP Animations**: Scroll-based interactive animations
 - **Visual Journey**: Immersive storytelling experience
 - **Educational Content**: Learn about Ujjain's spiritual significance
@@ -70,7 +50,7 @@ S.A.N.G.A.M serves as a complete digital companion for the Ujjain Mahakumbh, off
 - **Personal Stats**: Comprehensive spiritual journey metrics
 
 ### 🤖 **AI Chatbot - Sangam Sathi**
-- **Spiritual Guidance**: AI-powered assistant for pilgrimage queries
+- **Spiritual Guidance**: AI-powered RAG based assistant for pilgrimage queries
 - **Temple Information**: Detailed information about Ujjain temples
 - **Travel Tips**: Practical advice for pilgrims
 - **24/7 Support**: Always available digital companion
@@ -183,25 +163,6 @@ The web application will be available at `http://localhost:5000`
 2. **Content Updates**: Manage landmark information and seva opportunities
 3. **Analytics**: Track platform usage and engagement metrics
 
-## 📊 Data Models
-
-### User Profile
-- Personal information (name, email, mobile, SANGAM ID)
-- Spiritual progress (punya points, badges)
-- Activity history (visited places, completed seva)
-- Security (hashed passwords, session management)
-
-### Landmarks
-- 6 major spiritual sites with detailed information
-- Stories, significance, and video content
-- Punya point rewards for visits
-- Category-based organization
-
-### Seva Quests
-- 6 service categories with varying punya rewards
-- Duration, location, and badge information
-- Progress tracking and completion status
-
 ## 🔒 Security Features
 
 - **Password Security**: Werkzeug password hashing
@@ -210,35 +171,6 @@ The web application will be available at `http://localhost:5000`
 - **Data Protection**: User data sanitization and validation
 - **Environment Security**: Environment variables for sensitive data
 
-## 🌐 API Endpoints
-
-### Authentication
-- `POST /register` - User registration
-- `POST /login_user` - User login
-- `GET /logout` - User logout
-
-### User Data
-- `GET /api/user_data` - Get user profile
-- `POST /api/mark_visited` - Mark landmark as visited
-- `POST /api/complete_seva` - Complete seva quest
-
-### Content
-- `GET /api/landmarks` - Get all landmarks
-- `GET /api/landmarks/<id>` - Get specific landmark
-- `GET /api/seva-quests` - Get all seva quests
-- `POST /api/seva-quests/<id>/complete` - Complete seva
-
-### Utilities
-- `POST /api/chatbot` - Chat with AI assistant
-- `POST /api/sos` - Send SOS alert
-
-## 🎨 UI/UX Features
-
-- **Responsive Design**: Works seamlessly across devices
-- **Modern UI**: Clean, intuitive interface with spiritual aesthetics
-- **Accessibility**: User-friendly navigation and clear typography
-- **Interactive Elements**: Engaging animations and transitions
-- **Cultural Design**: Orange/saffron color scheme reflecting spiritual themes
 
 ## 🔮 Future Enhancements
 
@@ -256,14 +188,6 @@ The web application will be available at `http://localhost:5000`
 3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
 4. Push to the branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
-
-## 📄 License
-
-This project is developed for the Ujjain Mahakumbh 2028 and is intended for spiritual and educational purposes.
-
-## 📞 Support
-
-For technical support or spiritual guidance, contact the S.A.N.G.A.M development team or use the in-app Sangam Sathi chatbot.
 
 ---
 
