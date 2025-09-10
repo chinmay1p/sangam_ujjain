@@ -1,0 +1,967 @@
+{% extends "base.html" %}
+
+{% block title %}Sangam Ujjain - Sacred Journey to the Divine City of Mahakal{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section id="home" class="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <!-- Background with parallax effect -->
+    <div class="absolute inset-0 parallax" style="background-image: url('{{ url_for('static', filename='assets/ujjain_city_1.png') }}');">
+        <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/50 to-black/70"></div>
+    </div>
+    
+    <!-- Floating elements -->
+    <div class="absolute top-20 left-10 animate-float">
+        <div class="w-16 h-16 bg-accent-gold/20 rounded-full blur-xl"></div>
+    </div>
+    <div class="absolute bottom-32 right-16 animate-float" style="animation-delay: -2s;">
+        <div class="w-24 h-24 bg-primary-orange/20 rounded-full blur-xl"></div>
+    </div>
+    
+    <!-- Hero Content -->
+    <div class="relative z-10 text-center text-white px-4 sm:px-6 lg:px-8 max-w-6xl mx-auto">
+        <!-- Logo -->
+        <div class="mb-8 animate-float">
+            <div class="w-32 h-32 mx-auto bg-white/10 backdrop-blur-md rounded-full p-6 shadow-glow">
+                <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Sangam Logo" class="w-full h-full rounded-full object-cover">
+            </div>
+        </div>
+        
+        <!-- Main Heading -->
+        <h1 class="text-5xl md:text-7xl font-cinzel font-bold mb-6 fade-in">
+            <span class="text-gradient">Sangam Ujjain</span>
+        </h1>
+        
+        <!-- Subtitle -->
+        <p class="text-xl md:text-3xl font-playfair mb-4 text-gray-200 fade-in" style="animation-delay: 0.2s;">
+            The Sacred City of Mahakaleshwar
+        </p>
+        
+        <!-- Description -->
+        <p class="text-lg md:text-xl mb-8 text-gray-300 max-w-3xl mx-auto leading-relaxed fade-in" style="animation-delay: 0.4s;">
+            Embark on a divine journey to one of India's most sacred cities. Experience the spiritual energy of the Mahakaleshwar Jyotirlinga and prepare for the grand Kumbh Mela 2028.
+        </p>
+        
+        <!-- CTA Buttons -->
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12 fade-in" style="animation-delay: 0.6s;">
+            <a href="#temples" class="bg-primary-orange hover:bg-orange-700 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-glow">
+                <i class="fas fa-temple mr-2"></i>
+                Explore Sacred Temples
+            </a>
+            <a href="#kumbh" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300">
+                <i class="fas fa-calendar-alt mr-2"></i>
+                Kumbh Mela 2028
+            </a>
+            <a href="/login" class="bg-accent-gold hover:bg-yellow-600 text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105">
+                <i class="fas fa-user-plus mr-2"></i>
+                Join Sangam
+            </a>
+        </div>
+        
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+            <i class="fas fa-chevron-down text-2xl text-white/70"></i>
+        </div>
+    </div>
+</section>
+
+<!-- About Ujjain Section -->
+<section id="about" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-cinzel font-bold text-gray-900 mb-6">
+                The Divine City of <span class="text-gradient">Ujjain</span>
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                One of the seven sacred cities of India, where ancient spirituality meets divine energy
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+            <!-- Content -->
+            <div class="space-y-6">
+                <h3 class="text-3xl font-playfair font-bold text-gray-900">A Sacred Heritage Spanning Millennia</h3>
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    Ujjain, known as Ujjayini in ancient times, stands as one of India's most revered pilgrimage destinations. 
+                    This sacred city on the banks of the holy Shipra River has been a center of spiritual learning and 
+                    divine worship for over 2,000 years.
+                </p>
+                <p class="text-lg text-gray-700 leading-relaxed">
+                    Home to the magnificent Mahakaleshwar Jyotirlinga, Ujjain is where Lord Shiva resides in his most 
+                    powerful form. The city's spiritual significance is further enhanced by its role as one of the four 
+                    sacred sites of the Kumbh Mela, where drops of the nectar of immortality are believed to have fallen.
+                </p>
+                
+                <!-- Key Features -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-primary-orange/10 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-temple text-primary-orange text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Sacred Jyotirlinga</h4>
+                            <p class="text-sm text-gray-600">One of 12 divine Shiva temples</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-primary-orange/10 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-water text-primary-orange text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Holy Shipra River</h4>
+                            <p class="text-sm text-gray-600">Sacred bathing destination</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-primary-orange/10 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-star text-primary-orange text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Kumbh Mela Host</h4>
+                            <p class="text-sm text-gray-600">Every 12 years grand festival</p>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <div class="w-12 h-12 bg-primary-orange/10 rounded-lg flex items-center justify-center">
+                            <i class="fas fa-book text-primary-orange text-xl"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-900">Ancient Learning</h4>
+                            <p class="text-sm text-gray-600">Sandipani Ashram heritage</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Image -->
+            <div class="relative">
+                <div class="aspect-square rounded-2xl overflow-hidden shadow-custom">
+                    <img src="{{ url_for('static', filename='assets/mahakaleshwar temple.png') }}" alt="Mahakaleshwar Temple" class="w-full h-full object-cover">
+                </div>
+                <div class="absolute -bottom-6 -right-6 w-32 h-32 bg-accent-gold/20 rounded-full blur-2xl"></div>
+            </div>
+        </div>
+        
+        <!-- Video Section -->
+        <div class="bg-gray-50 rounded-3xl p-8 md:p-12">
+            <div class="text-center mb-8">
+                <h3 class="text-3xl font-playfair font-bold text-gray-900 mb-4">Discover the Divine Beauty of Ujjain</h3>
+                <p class="text-lg text-gray-600">Experience the spiritual energy through this immersive journey</p>
+            </div>
+            <div class="aspect-video rounded-2xl overflow-hidden shadow-custom">
+                <iframe 
+                    src="https://www.youtube.com/embed/NhFZr8UqqUY" 
+                    title="Ujjain - The Sacred City" 
+                    class="w-full h-full"
+                    frameborder="0" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Sacred Temples Section -->
+<section id="temples" class="py-20 bg-gradient-to-br from-orange-50 to-amber-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-cinzel font-bold text-gray-900 mb-6">
+                Sacred <span class="text-gradient">Temples</span> of Ujjain
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Discover the divine energy of ancient temples that have been centers of worship for millennia
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Mahakaleshwar Temple -->
+            <div class="bg-white rounded-2xl shadow-custom overflow-hidden card-hover">
+                <div class="aspect-video relative">
+                    <img src="{{ url_for('static', filename='assets/mahakaleshwar temple.png') }}" alt="Mahakaleshwar Temple" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 bg-deep-saffron text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        Jyotirlinga
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-playfair font-bold text-gray-900 mb-2">Mahakaleshwar Temple</h3>
+                    <p class="text-gray-600 mb-4">The most revered Jyotirlinga, where Lord Shiva resides as the destroyer of time and death. The only southward-facing Jyotirlinga among the twelve.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-clock text-primary-orange"></i>
+                            <span class="text-sm text-gray-600">4:00 AM - 11:00 PM</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-star text-accent-gold"></i>
+                            <span class="text-sm text-gray-600">Must Visit</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Harsiddhi Temple -->
+            <div class="bg-white rounded-2xl shadow-custom overflow-hidden card-hover">
+                <div class="aspect-video relative">
+                    <img src="{{ url_for('static', filename='assets/harsiddhi temple.png') }}" alt="Harsiddhi Temple" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 bg-pink-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        Shakti Peeth
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-playfair font-bold text-gray-900 mb-2">Harsiddhi Temple</h3>
+                    <p class="text-gray-600 mb-4">One of the 51 Shakti Peethas, where the elbow of Goddess Sati fell. Known for granting wishes and bestowing prosperity upon devotees.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-clock text-primary-orange"></i>
+                            <span class="text-sm text-gray-600">5:00 AM - 10:00 PM</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-heart text-pink-600"></i>
+                            <span class="text-sm text-gray-600">Divine Mother</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Kal Bhairav Temple -->
+            <div class="bg-white rounded-2xl shadow-custom overflow-hidden card-hover">
+                <div class="aspect-video relative">
+                    <img src="{{ url_for('static', filename='assets/kal bhairav temple.png') }}" alt="Kal Bhairav Temple" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 bg-gray-800 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        Guardian Deity
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-playfair font-bold text-gray-900 mb-2">Kal Bhairav Temple</h3>
+                    <p class="text-gray-600 mb-4">The fierce guardian of Ujjain, Lord Bhairav protects the city and its devotees. Famous for the unique offering of liquor to the deity.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-clock text-primary-orange"></i>
+                            <span class="text-sm text-gray-600">5:00 AM - 10:00 PM</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-shield-alt text-gray-800"></i>
+                            <span class="text-sm text-gray-600">Protector</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Ram Ghat -->
+            <div class="bg-white rounded-2xl shadow-custom overflow-hidden card-hover">
+                <div class="aspect-video relative">
+                    <img src="{{ url_for('static', filename='assets/ram ghat.png') }}" alt="Ram Ghat" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 bg-blue-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        Sacred Ghat
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-playfair font-bold text-gray-900 mb-2">Ram Ghat</h3>
+                    <p class="text-gray-600 mb-4">The most sacred bathing ghat on the Shipra River, blessed by Lord Rama himself. Main venue for Kumbh Mela celebrations.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-sun text-primary-orange"></i>
+                            <span class="text-sm text-gray-600">Sunrise to Sunset</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-water text-blue-600"></i>
+                            <span class="text-sm text-gray-600">Holy Bath</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Sandipani Ashram -->
+            <div class="bg-white rounded-2xl shadow-custom overflow-hidden card-hover">
+                <div class="aspect-video relative">
+                    <img src="{{ url_for('static', filename='assets/sandipani ashram.png') }}" alt="Sandipani Ashram" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 bg-green-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        Ancient Ashram
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-playfair font-bold text-gray-900 mb-2">Sandipani Ashram</h3>
+                    <p class="text-gray-600 mb-4">The ancient gurukul where Lord Krishna, Balarama, and Sudama received their education. A center of divine knowledge and wisdom.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-clock text-primary-orange"></i>
+                            <span class="text-sm text-gray-600">6:00 AM - 8:00 PM</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-graduation-cap text-green-600"></i>
+                            <span class="text-sm text-gray-600">Learning</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Shipra River -->
+            <div class="bg-white rounded-2xl shadow-custom overflow-hidden card-hover">
+                <div class="aspect-video relative">
+                    <img src="{{ url_for('static', filename='assets/shipra river.png') }}" alt="Shipra River" class="w-full h-full object-cover">
+                    <div class="absolute top-4 left-4 bg-cyan-600 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        Sacred River
+                    </div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-playfair font-bold text-gray-900 mb-2">Shipra River</h3>
+                    <p class="text-gray-600 mb-4">The holy river that flows through Ujjain, believed to cleanse sins and grant moksha. Sacred as the Ganges during Kumbh Mela.</p>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-sun text-primary-orange"></i>
+                            <span class="text-sm text-gray-600">Always Open</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-hands-wash text-cyan-600"></i>
+                            <span class="text-sm text-gray-600">Purification</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Kumbh Mela 2028 Section -->
+<section id="kumbh" class="py-20 bg-gradient-to-br from-indigo-900 via-purple-900 to-pink-900 text-white relative overflow-hidden">
+    <!-- Background Pattern -->
+    <div class="absolute inset-0 opacity-10">
+        <div class="absolute top-10 left-10 w-32 h-32 border border-white/20 rounded-full"></div>
+        <div class="absolute bottom-20 right-20 w-48 h-48 border border-white/20 rounded-full"></div>
+        <div class="absolute top-1/2 left-1/4 w-24 h-24 border border-white/20 rounded-full"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-6xl font-cinzel font-bold mb-6">
+                Ujjain Kumbh Mela <span class="text-accent-gold">2028</span>
+            </h2>
+            <p class="text-xl md:text-2xl text-gray-200 max-w-4xl mx-auto">
+                The world's largest spiritual gathering returns to Ujjain. Join millions of devotees for this once-in-12-years divine celebration.
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+            <!-- Content -->
+            <div class="space-y-8">
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+                    <h3 class="text-3xl font-playfair font-bold mb-6 text-accent-gold">The Sacred Gathering</h3>
+                    <p class="text-lg text-gray-200 leading-relaxed mb-6">
+                        The Ujjain Kumbh Mela, also known as Simhastha, occurs when Jupiter enters Leo and the Sun enters Aries. 
+                        This celestial alignment creates the most auspicious time for spiritual purification and divine blessings.
+                    </p>
+                    
+                    <!-- Key Dates -->
+                    <div class="space-y-4">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-accent-gold/20 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-calendar-alt text-accent-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Festival Duration</h4>
+                                <p class="text-gray-300">March 27 - May 27, 2028</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-accent-gold/20 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-water text-accent-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Shahi Snan (Royal Bath)</h4>
+                                <p class="text-gray-300">April 14, 2028 at Ram Ghat</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-accent-gold/20 rounded-lg flex items-center justify-center">
+                                <i class="fas fa-users text-accent-gold"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Expected Pilgrims</h4>
+                                <p class="text-gray-300">Over 100 million devotees</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Spiritual Significance -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20">
+                    <h3 class="text-2xl font-playfair font-bold mb-4 text-accent-gold">Spiritual Significance</h3>
+                    <ul class="space-y-3 text-gray-200">
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-star text-accent-gold mt-1"></i>
+                            <span>Liberation from the cycle of birth and death</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-star text-accent-gold mt-1"></i>
+                            <span>Cleansing of past sins and karma</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-star text-accent-gold mt-1"></i>
+                            <span>Attainment of spiritual enlightenment</span>
+                        </li>
+                        <li class="flex items-start space-x-3">
+                            <i class="fas fa-star text-accent-gold mt-1"></i>
+                            <span>Blessings from sacred Naga Sadhus</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <!-- Visual Content -->
+            <div class="space-y-6">
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                    <h3 class="text-2xl font-playfair font-bold mb-4 text-center text-accent-gold">Countdown to Kumbh 2028</h3>
+                    <div class="grid grid-cols-4 gap-4 text-center">
+                        <div class="bg-white/10 rounded-lg p-4">
+                            <div class="text-3xl font-bold text-accent-gold" id="years">3</div>
+                            <div class="text-sm text-gray-300">Years</div>
+                        </div>
+                        <div class="bg-white/10 rounded-lg p-4">
+                            <div class="text-3xl font-bold text-accent-gold" id="months">6</div>
+                            <div class="text-sm text-gray-300">Months</div>
+                        </div>
+                        <div class="bg-white/10 rounded-lg p-4">
+                            <div class="text-3xl font-bold text-accent-gold" id="days">15</div>
+                            <div class="text-sm text-gray-300">Days</div>
+                        </div>
+                        <div class="bg-white/10 rounded-lg p-4">
+                            <div class="text-3xl font-bold text-accent-gold" id="hours">12</div>
+                            <div class="text-sm text-gray-300">Hours</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Key Events -->
+                <div class="bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20">
+                    <h3 class="text-xl font-playfair font-bold mb-4 text-accent-gold">Key Events</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-deep-saffron rounded-full flex items-center justify-center">
+                                <i class="fas fa-fire text-white text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Maha Aarti</h4>
+                                <p class="text-sm text-gray-300">Grand evening prayers at Mahakaleshwar</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-users text-white text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Naga Procession</h4>
+                                <p class="text-sm text-gray-300">Sacred march of ascetic saints</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <div class="w-8 h-8 bg-green-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-book text-white text-xs"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-white">Spiritual Discourses</h4>
+                                <p class="text-sm text-gray-300">Teachings by renowned gurus</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- CTA Section -->
+        <div class="text-center">
+            <div class="bg-white/10 backdrop-blur-md rounded-2xl p-8 border border-white/20 inline-block">
+                <h3 class="text-2xl font-playfair font-bold mb-4 text-accent-gold">Prepare for Your Sacred Journey</h3>
+                <p class="text-gray-200 mb-6 max-w-2xl">
+                    Join our community to receive updates, travel guides, and spiritual preparation materials for Kumbh Mela 2028.
+                </p>
+                <a href="/login" class="bg-accent-gold hover:bg-yellow-600 text-gray-900 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 inline-block">
+                    <i class="fas fa-user-plus mr-2"></i>
+                    Join Sangam Community
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Services Section -->
+<section id="services" class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-cinzel font-bold text-gray-900 mb-6">
+                Pilgrimage <span class="text-gradient">Services</span>
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Comprehensive support for your spiritual journey to Ujjain
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Digital Punya Tracking -->
+            <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-8 shadow-custom card-hover border border-orange-100">
+                <div class="w-16 h-16 bg-primary-orange/10 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fas fa-trophy text-primary-orange text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-playfair font-bold text-gray-900 mb-4">Digital Punya Tracking</h3>
+                <p class="text-gray-600 mb-6">Track your spiritual merit through temple visits, seva activities, and sacred rituals. Earn digital punya points and unlock spiritual achievements.</p>
+                <ul class="space-y-2 text-sm text-gray-600">
+                    <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i>Temple visit tracking</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i>Seva activity logging</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i>Spiritual badges system</li>
+                </ul>
+            </div>
+            
+            <!-- Family Safety -->
+            <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8 shadow-custom card-hover border border-blue-100">
+                <div class="w-16 h-16 bg-blue-600/10 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fas fa-users text-blue-600 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-playfair font-bold text-gray-900 mb-4">Family Safety & Tracking</h3>
+                <p class="text-gray-600 mb-6">Keep your family safe during crowded festivals with real-time location sharing and emergency alerts.</p>
+                <ul class="space-y-2 text-sm text-gray-600">
+                    <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i>Real-time location sharing</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i>Emergency SOS alerts</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i>Family group management</li>
+                </ul>
+            </div>
+            
+            <!-- AI Spiritual Guide -->
+            <div class="bg-gradient-to-br from-purple-50 to-pink-50 rounded-2xl p-8 shadow-custom card-hover border border-purple-100">
+                <div class="w-16 h-16 bg-purple-600/10 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fas fa-robot text-purple-600 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-playfair font-bold text-gray-900 mb-4">Sangam Sathi - AI Guide</h3>
+                <p class="text-gray-600 mb-6">Your personal AI spiritual companion providing guidance on rituals, temple information, and pilgrimage planning.</p>
+                <ul class="space-y-2 text-sm text-gray-600">
+                    <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i>24/7 spiritual guidance</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i>Temple information & timings</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i>Ritual instructions</li>
+                </ul>
+            </div>
+            
+            <!-- Crowd Navigation -->
+            <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8 shadow-custom card-hover border border-green-100">
+                <div class="w-16 h-16 bg-green-600/10 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fas fa-route text-green-600 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-playfair font-bold text-gray-900 mb-4">Smart Crowd Navigation</h3>
+                <p class="text-gray-600 mb-6">Navigate through crowded areas efficiently with real-time crowd density maps and optimal route suggestions.</p>
+                <ul class="space-y-2 text-sm text-gray-600">
+                    <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i>Real-time crowd density</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i>Optimal route planning</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i>Queue time estimates</li>
+                </ul>
+            </div>
+            
+            <!-- Accommodation -->
+            <div class="bg-gradient-to-br from-yellow-50 to-orange-50 rounded-2xl p-8 shadow-custom card-hover border border-yellow-100">
+                <div class="w-16 h-16 bg-yellow-600/10 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fas fa-bed text-yellow-600 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-playfair font-bold text-gray-900 mb-4">Accommodation Booking</h3>
+                <p class="text-gray-600 mb-6">Find and book verified accommodations near temples and ghats, from budget dharamshalas to luxury hotels.</p>
+                <ul class="space-y-2 text-sm text-gray-600">
+                    <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i>Verified accommodations</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i>All budget ranges</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i>Near sacred sites</li>
+                </ul>
+            </div>
+            
+            <!-- Travel Planning -->
+            <div class="bg-gradient-to-br from-red-50 to-pink-50 rounded-2xl p-8 shadow-custom card-hover border border-red-100">
+                <div class="w-16 h-16 bg-red-600/10 rounded-2xl flex items-center justify-center mb-6">
+                    <i class="fas fa-map text-red-600 text-2xl"></i>
+                </div>
+                <h3 class="text-xl font-playfair font-bold text-gray-900 mb-4">Complete Travel Planning</h3>
+                <p class="text-gray-600 mb-6">Comprehensive travel planning including transportation, itineraries, and local guide recommendations.</p>
+                <ul class="space-y-2 text-sm text-gray-600">
+                    <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i>Custom itineraries</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i>Transportation booking</li>
+                    <li class="flex items-center"><i class="fas fa-check text-green-600 mr-2"></i>Local guide services</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Section -->
+<section id="contact" class="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl md:text-5xl font-cinzel font-bold text-gray-900 mb-6">
+                Connect with <span class="text-gradient">Sangam</span>
+            </h2>
+            <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                Have questions about your pilgrimage? We're here to help you plan your sacred journey.
+            </p>
+        </div>
+        
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+            <!-- Contact Information -->
+            <div class="space-y-8">
+                <div class="bg-white rounded-2xl p-8 shadow-custom">
+                    <h3 class="text-2xl font-playfair font-bold text-gray-900 mb-6">Get in Touch</h3>
+                    
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-primary-orange/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-map-marker-alt text-primary-orange text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">Visit Us</h4>
+                                <p class="text-gray-600">Near Mahakaleshwar Temple<br>Ujjain, Madhya Pradesh 456001</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-primary-orange/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-phone text-primary-orange text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">Call Us</h4>
+                                <p class="text-gray-600">+91 12345 67890<br>+91 98765 43210</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-primary-orange/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-envelope text-primary-orange text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">Email Us</h4>
+                                <p class="text-gray-600">info@sangamujjain.com<br>support@sangamujjain.com</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-primary-orange/10 rounded-lg flex items-center justify-center flex-shrink-0">
+                                <i class="fas fa-clock text-primary-orange text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-semibold text-gray-900 mb-1">Support Hours</h4>
+                                <p class="text-gray-600">24/7 during Kumbh Mela<br>9 AM - 9 PM (Regular days)</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Emergency Contacts -->
+                <div class="bg-red-50 border border-red-200 rounded-2xl p-6">
+                    <h3 class="text-xl font-playfair font-bold text-red-800 mb-4">Emergency Contacts</h3>
+                    <div class="space-y-3">
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-ambulance text-red-600"></i>
+                            <span class="text-red-700">Medical Emergency: 108</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-shield-alt text-red-600"></i>
+                            <span class="text-red-700">Police: 100</span>
+                        </div>
+                        <div class="flex items-center space-x-3">
+                            <i class="fas fa-fire text-red-600"></i>
+                            <span class="text-red-700">Fire Department: 101</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="bg-white rounded-2xl p-8 shadow-custom">
+                <h3 class="text-2xl font-playfair font-bold text-gray-900 mb-6">Send us a Message</h3>
+                
+                <form class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">First Name</label>
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-orange focus:border-transparent">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-gray-700 mb-2">Last Name</label>
+                            <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-orange focus:border-transparent">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
+                        <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-orange focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Phone</label>
+                        <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-orange focus:border-transparent">
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Subject</label>
+                        <select class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-orange focus:border-transparent">
+                            <option>General Inquiry</option>
+                            <option>Kumbh Mela 2028</option>
+                            <option>Accommodation</option>
+                            <option>Temple Information</option>
+                            <option>Technical Support</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Message</label>
+                        <textarea rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-orange focus:border-transparent" placeholder="Tell us how we can help you..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="w-full bg-primary-orange hover:bg-orange-700 text-white py-3 px-6 rounded-lg font-semibold transition-colors">
+                        <i class="fas fa-paper-plane mr-2"></i>
+                        Send Message
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="py-20 gradient-hero text-white relative overflow-hidden">
+    <div class="absolute inset-0 opacity-20">
+        <div class="absolute top-10 right-10 w-40 h-40 border border-white/30 rounded-full animate-pulse"></div>
+        <div class="absolute bottom-20 left-20 w-32 h-32 border border-white/30 rounded-full animate-pulse" style="animation-delay: -1s;"></div>
+    </div>
+    
+    <div class="max-w-4xl mx-auto text-center px-4 sm:px-6 lg:px-8 relative z-10">
+        <h2 class="text-4xl md:text-5xl font-cinzel font-bold mb-6">
+            Begin Your Sacred Journey Today
+        </h2>
+        <p class="text-xl md:text-2xl text-gray-200 mb-8 max-w-3xl mx-auto">
+            Join thousands of pilgrims who trust Sangam for their spiritual journey to Ujjain. 
+            Experience the divine with our comprehensive pilgrimage platform.
+        </p>
+        
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+            <a href="/login" class="bg-accent-gold hover:bg-yellow-600 text-gray-900 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300 hover:scale-105 shadow-glow">
+                <i class="fas fa-user-plus mr-2"></i>
+                Create Your Account
+            </a>
+            <a href="#temples" class="bg-transparent border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-300">
+                <i class="fas fa-temple mr-2"></i>
+                Explore Temples
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    // Countdown Timer for Kumbh Mela 2028
+    function updateCountdown() {
+        try {
+            const kumbhDate = new Date('2028-03-27T00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = kumbhDate - now;
+            
+            if (distance < 0) {
+                // Event has passed
+                const elements = ['years', 'months', 'days', 'hours'];
+                elements.forEach(id => {
+                    const element = document.getElementById(id);
+                    if (element) element.textContent = '0';
+                });
+                return;
+            }
+            
+            const years = Math.floor(distance / (1000 * 60 * 60 * 24 * 365));
+            const months = Math.floor((distance % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30));
+            const days = Math.floor((distance % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            
+            // Update elements with error checking
+            const yearsEl = document.getElementById('years');
+            const monthsEl = document.getElementById('months');
+            const daysEl = document.getElementById('days');
+            const hoursEl = document.getElementById('hours');
+            
+            if (yearsEl) yearsEl.textContent = years;
+            if (monthsEl) monthsEl.textContent = months;
+            if (daysEl) daysEl.textContent = days;
+            if (hoursEl) hoursEl.textContent = hours;
+            
+        } catch (error) {
+            console.error('Error updating countdown:', error);
+        }
+    }
+    
+    // Update countdown every hour
+    updateCountdown();
+    const countdownInterval = setInterval(updateCountdown, 3600000);
+    
+    // Intersection Observer for animations
+    function initializeAnimations() {
+        try {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        entry.target.classList.remove('fade-in-hidden');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all sections and add initial hidden class
+            document.querySelectorAll('section').forEach(section => {
+                section.classList.add('fade-in-hidden');
+                observer.observe(section);
+            });
+            
+            // Observe cards and other animated elements
+            document.querySelectorAll('.card-hover, .animate-float').forEach(element => {
+                observer.observe(element);
+            });
+            
+        } catch (error) {
+            console.error('Error initializing animations:', error);
+        }
+    }
+    
+    // Form submission handler
+    function handleContactForm() {
+        const form = document.querySelector('#contact form');
+        if (form) {
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                // Get form data
+                const formData = new FormData(form);
+                const data = Object.fromEntries(formData);
+                
+                // Simple validation
+                if (!data.email || !data.message) {
+                    showNotification('Please fill in all required fields', 'error');
+                    return;
+                }
+                
+                // Show loading state
+                const submitBtn = form.querySelector('button[type="submit"]');
+                const originalText = submitBtn.innerHTML;
+                submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin mr-2"></i>Sending...';
+                submitBtn.disabled = true;
+                
+                // Simulate form submission (replace with actual endpoint)
+                setTimeout(() => {
+                    submitBtn.innerHTML = originalText;
+                    submitBtn.disabled = false;
+                    showNotification('Thank you for your message! We will get back to you soon.', 'success');
+                    form.reset();
+                }, 2000);
+            });
+        }
+    }
+    
+    // Notification system
+    function showNotification(message, type = 'info') {
+        const notification = document.createElement('div');
+        const bgColor = {
+            'success': 'bg-green-500',
+            'error': 'bg-red-500',
+            'info': 'bg-blue-500',
+            'warning': 'bg-yellow-500'
+        }[type] || 'bg-gray-500';
+        
+        notification.className = `fixed top-4 right-4 ${bgColor} text-white px-6 py-3 rounded-lg shadow-lg z-50 transform translate-x-full opacity-0 transition-all duration-300`;
+        notification.innerHTML = `
+            <div class="flex items-center space-x-2">
+                <span>${message}</span>
+                <button onclick="this.parentElement.parentElement.remove()" class="ml-2 text-white hover:text-gray-200">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+        `;
+        
+        document.body.appendChild(notification);
+        
+        // Animate in
+        setTimeout(() => {
+            notification.classList.remove('translate-x-full', 'opacity-0');
+        }, 100);
+        
+        // Auto remove after 5 seconds
+        setTimeout(() => {
+            notification.classList.add('translate-x-full', 'opacity-0');
+            setTimeout(() => {
+                if (notification.parentElement) {
+                    notification.remove();
+                }
+            }, 300);
+        }, 5000);
+    }
+    
+    // Smooth scroll enhancement
+    function enhanceSmoothScroll() {
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                if (targetElement) {
+                    const headerOffset = 80; // Account for fixed header
+                    const elementPosition = targetElement.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                    
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    }
+    
+    // Active navigation link highlighting
+    function updateActiveNavLink() {
+        const sections = document.querySelectorAll('section[id]');
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                const sectionHeight = section.offsetHeight;
+                
+                if (sectionTop <= 100 && sectionTop + sectionHeight > 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    }
+    
+    // Initialize everything when DOM is loaded
+    document.addEventListener('DOMContentLoaded', function() {
+        try {
+            initializeAnimations();
+            handleContactForm();
+            enhanceSmoothScroll();
+            updateActiveNavLink();
+            
+            // Add loading complete class to body
+            document.body.classList.add('loaded');
+            
+        } catch (error) {
+            console.error('Error initializing page:', error);
+        }
+    });
+    
+    // Cleanup on page unload
+    window.addEventListener('beforeunload', function() {
+        if (countdownInterval) {
+            clearInterval(countdownInterval);
+        }
+    });
+</script>

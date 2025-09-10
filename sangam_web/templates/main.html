@@ -1,0 +1,679 @@
+{% extends "base.html" %}
+
+{% block title %}S.A.N.G.A.M - {{ active_tab.title() }}{% endblock %}
+
+{% block content %}
+<div class="min-h-screen bg-gray-50">
+    <!-- Main Content -->
+    <div class="pb-20" id="mainContent">
+        <!-- Home Tab Content -->
+        <div id="homeTab" class="tab-content {{ 'block' if active_tab == 'home' else 'hidden' }}">
+            <!-- Background with overlay -->
+            <div class="relative h-screen">
+                <div class="absolute inset-0">
+                    <img src="{{ url_for('static', filename='assets/ujjain_city_1.png') }}" alt="Ujjain City" class="w-full h-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-b from-black/30 to-black/60"></div>
+                </div>
+                
+                <!-- Content -->
+                <div class="relative z-10 flex flex-col items-center justify-center h-full text-white px-6">
+                    <!-- Logo -->
+                    <div class="w-24 h-24 rounded-full bg-white shadow-xl mb-6 flex items-center justify-center">
+                        <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="SANGAM Logo" class="w-20 h-20 rounded-full object-cover">
+                    </div>
+                    
+                    <!-- Title -->
+                    <h1 class="text-4xl md:text-5xl font-bold text-center mb-4 font-playfair">Welcome to Ujjain</h1>
+                    <p class="text-xl md:text-2xl font-medium tracking-wide text-center mb-8 font-poppins">The City of Temples</p>
+                    
+                    <!-- Quick Actions -->
+                    <div class="flex space-x-4 mb-8">
+                        <button onclick="showTab('sanskrti')" class="bg-orange-600 hover:bg-orange-700 px-6 py-3 rounded-xl font-semibold transition-colors flex items-center space-x-2">
+                            <i class="fas fa-temple"></i>
+                            <span>Sanskrti</span>
+                        </button>
+                        <button onclick="showTab('seva')" class="bg-orange-600 hover:bg-orange-700 px-6 py-3 rounded-xl font-semibold transition-colors flex items-center space-x-2">
+                            <i class="fas fa-hands-helping"></i>
+                            <span>Seva</span>
+                        </button>
+                    </div>
+                    
+                    <!-- SOS Button -->
+                    <button onclick="showSOSDialog()" class="w-32 h-32 bg-red-600 hover:bg-red-700 rounded-full flex flex-col items-center justify-center shadow-2xl transition-transform hover:scale-105">
+                        <img src="{{ url_for('static', filename='assets/pot2.png') }}" alt="SOS" class="w-10 h-10 mb-2 brightness-0 invert">
+                        <span class="font-bold text-lg tracking-widest">SOS</span>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Content Cards -->
+            <div class="px-6 py-8 space-y-8 -mt-20 relative z-20">
+                <!-- About Ujjain Card -->
+                <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-custom">
+                    <h2 class="text-2xl font-bold text-orange-800 mb-4 font-playfair">About Ujjain</h2>
+                    <p class="text-gray-700 leading-relaxed">
+                        Ujjain, one of the seven sacred cities of India, is a spiritual haven where ancient temples meet divine energy. 
+                        Known as the "City of Temples," it houses the revered Mahakaleshwar Jyotirlinga and serves as a gateway to 
+                        spiritual enlightenment for millions of pilgrims.
+                    </p>
+                </div>
+                
+                <!-- YouTube Video Card -->
+                <div class="bg-white/95 backdrop-blur-sm rounded-2xl p-6 shadow-custom">
+                    <h2 class="text-2xl font-bold text-orange-800 mb-4 font-playfair">Discover Ujjain</h2>
+                    <div class="aspect-video rounded-xl overflow-hidden">
+                        <iframe 
+                            src="https://www.youtube.com/embed/NhFZr8UqqUY" 
+                            title="Ujjain Introduction" 
+                            class="w-full h-full"
+                            frameborder="0" 
+                            allowfullscreen>
+                        </iframe>
+                    </div>
+                </div>
+                
+                <!-- Mahakumbh 2028 Section -->
+                <div class="bg-gradient-to-br from-orange-50 to-amber-50 rounded-2xl p-6 shadow-custom border border-orange-200">
+                    <div class="flex items-center mb-6">
+                        <i class="fas fa-calendar-alt text-orange-700 text-2xl mr-3"></i>
+                        <h2 class="text-2xl font-bold text-orange-800 font-playfair">Ujjain Mahakumbh 2028</h2>
+                    </div>
+                    
+                    <div class="space-y-3">
+                        <!-- Opening Ceremony -->
+                        <div class="bg-white/80 rounded-xl p-4 border border-purple-200">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-purple-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-flag text-purple-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Opening Ceremony</h3>
+                                    <p class="text-sm text-gray-600">March 27, 2028 • Simhastha Kumbh Mela</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Official Start -->
+                        <div class="bg-white/80 rounded-xl p-4 border border-green-200">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-green-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-play text-green-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Mesha Sankranti (Official Start)</h3>
+                                    <p class="text-sm text-gray-600">April 13, 2028 • Ram Ghat, Shipra River</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- First Shahi Snan -->
+                        <div class="bg-white/80 rounded-xl p-4 border border-blue-200">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-water text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">First Shahi Snan (Purnima)</h3>
+                                    <p class="text-sm text-gray-600">April 22, 2028 • Ram Ghat, Shipra River</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Second Shahi Snan -->
+                        <div class="bg-white/80 rounded-xl p-4 border border-blue-200">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-water text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Second Shahi Snan (Amavasya)</h3>
+                                    <p class="text-sm text-gray-600">May 6, 2028 • Ram Ghat, Shipra River</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Third Shahi Snan -->
+                        <div class="bg-white/80 rounded-xl p-4 border border-blue-200">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-blue-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-water text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Third Shahi Snan (Akshaya Tritiya)</h3>
+                                    <p class="text-sm text-gray-600">May 9, 2028 • Ram Ghat, Shipra River</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Parva Snan -->
+                        <div class="bg-white/80 rounded-xl p-4 border border-indigo-200">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-indigo-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-tint text-indigo-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Parva Snan (Shukla Panchami)</h3>
+                                    <p class="text-sm text-gray-600">May 11, 2028 • Ram Ghat, Shipra River</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Ekadashi & Pradosh Snan -->
+                        <div class="bg-white/80 rounded-xl p-4 border border-teal-200">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-teal-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-droplet text-teal-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Ekadashi & Pradosh Snan</h3>
+                                    <p class="text-sm text-gray-600">May 17, 2028 • Ram Ghat, Shipra River</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Final Shahi Snan -->
+                        <div class="bg-white/80 rounded-xl p-4 border border-orange-200">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-orange-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-crown text-orange-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Final Shahi Snan (Purnima)</h3>
+                                    <p class="text-sm text-gray-600">May 21, 2028 • Ram Ghat, Shipra River</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Closing Ceremony -->
+                        <div class="bg-white/80 rounded-xl p-4 border border-red-200">
+                            <div class="flex items-center">
+                                <div class="w-10 h-10 bg-red-100 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-flag-checkered text-red-600"></i>
+                                </div>
+                                <div>
+                                    <h3 class="font-semibold text-gray-800">Closing Ceremony</h3>
+                                    <p class="text-sm text-gray-600">May 27, 2028 • Mahakaleshwar Temple</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Sanskrti Tab Content -->
+        <div id="sanskrtiTab" class="tab-content {{ 'block' if active_tab == 'sanskrti' else 'hidden' }}">
+            <!-- Header -->
+            <div class="gradient-bg text-white p-6">
+                <h1 class="text-3xl font-bold mb-2 font-playfair">Sanskriti</h1>
+                <p class="text-white/90">Sacred Landmarks of Ujjain</p>
+                <p class="text-sm text-white/80 mt-2">Discover the spiritual heritage and ancient wisdom</p>
+                
+                <!-- Punya Progress -->
+                <div class="mt-4 bg-white/15 rounded-xl p-3 border border-white/20">
+                    <div class="flex items-center">
+                        <i class="fas fa-leaf text-white mr-2"></i>
+                        <span class="text-sm font-medium">Dharma Trail Progress: <span id="punyaPoints">0</span> punya points</span>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Landmarks Grid -->
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="landmarksGrid">
+                    <!-- Landmarks will be loaded here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Seva Tab Content -->
+        <div id="sevaTab" class="tab-content {{ 'block' if active_tab == 'seva' else 'hidden' }}">
+            <!-- Header -->
+            <div class="bg-gradient-to-r from-green-500 to-green-600 text-white p-6">
+                <div class="text-center">
+                    <i class="fas fa-hands-helping text-5xl mb-4"></i>
+                    <h1 class="text-3xl font-bold mb-2 font-playfair">Seva - Selfless Service</h1>
+                    <p class="text-white/90">Serve others and earn spiritual merit through acts of kindness</p>
+                </div>
+            </div>
+            
+            <!-- Punya Score -->
+            <div class="p-6">
+                <div class="bg-white rounded-2xl p-6 shadow-custom mb-6">
+                    <div class="flex justify-between items-center">
+                        <div>
+                            <h2 class="text-gray-600 text-lg">Your Digital Punya</h2>
+                            <p class="text-3xl font-bold text-purple-600 mt-2"><span id="sevaPoints">0</span> points</p>
+                        </div>
+                        <div class="w-16 h-16 bg-purple-100 rounded-xl flex items-center justify-center">
+                            <i class="fas fa-trophy text-purple-600 text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Seva Quests -->
+                <h2 class="text-xl font-bold text-gray-800 mb-4">Available Seva Quests</h2>
+                <div class="space-y-4" id="sevaQuests">
+                    <!-- Seva quests will be loaded here -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Profile Tab Content -->
+        <div id="profileTab" class="tab-content {{ 'block' if active_tab == 'profile' else 'hidden' }}">
+            <div class="gradient-bg text-white p-6">
+                <h1 class="text-3xl font-bold mb-2 font-playfair">Profile</h1>
+                <p class="text-white/90">Your spiritual journey</p>
+            </div>
+            
+            <div class="p-6 space-y-6">
+                <!-- User Info Card -->
+                <div class="bg-white rounded-2xl p-6 shadow-custom">
+                    <div class="text-center mb-6">
+                        <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                            <i class="fas fa-user text-orange-600 text-2xl"></i>
+                        </div>
+                        <h2 class="text-xl font-bold text-gray-800" id="userName">Loading...</h2>
+                        <p class="text-gray-600" id="userEmail">Loading...</p>
+                        <p class="text-sm text-orange-600 font-semibold" id="sangamId">SANGAM ID: Loading...</p>
+                    </div>
+                    
+                    <div class="grid grid-cols-3 gap-4 text-center">
+                        <div>
+                            <p class="text-2xl font-bold text-purple-600" id="profilePunya">0</p>
+                            <p class="text-sm text-gray-600">Punya Points</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-green-600" id="badgeCount">0</p>
+                            <p class="text-sm text-gray-600">Badges</p>
+                        </div>
+                        <div>
+                            <p class="text-2xl font-bold text-blue-600" id="visitedCount">0</p>
+                            <p class="text-sm text-gray-600">Places Visited</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Badges -->
+                <div class="bg-white rounded-2xl p-6 shadow-custom">
+                    <h3 class="text-lg font-bold text-gray-800 mb-4">Your Badges</h3>
+                    <div class="grid grid-cols-2 gap-3" id="badgesList">
+                        <p class="text-gray-500 col-span-2">No badges earned yet</p>
+                    </div>
+                </div>
+                
+                <!-- Logout Button -->
+                <button onclick="logout()" class="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-xl font-semibold transition-colors">
+                    Logout
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bottom Navigation (Mobile Only) -->
+    <div class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-lg z-50 md:hidden">
+        <div class="flex">
+            <button onclick="showTab('home')" class="flex-1 py-3 text-center nav-item" data-tab="home">
+                <i class="fas fa-home text-xl mb-1 block"></i>
+                <span class="text-xs font-medium">Home</span>
+            </button>
+            <button onclick="showTab('sanskrti')" class="flex-1 py-3 text-center nav-item" data-tab="sanskrti">
+                <i class="fas fa-om text-xl mb-1 block"></i>
+                <span class="text-xs font-medium">Sanskrti</span>
+            </button>
+            <button onclick="showTab('seva')" class="flex-1 py-3 text-center nav-item" data-tab="seva">
+                <i class="fas fa-hands-helping text-xl mb-1 block"></i>
+                <span class="text-xs font-medium">Seva</span>
+            </button>
+            <button onclick="showTab('profile')" class="flex-1 py-3 text-center nav-item" data-tab="profile">
+                <i class="fas fa-user text-xl mb-1 block"></i>
+                <span class="text-xs font-medium">Profile</span>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Floating Chatbot Button -->
+    <button onclick="openChatbot()" class="fixed bottom-24 right-6 w-14 h-14 bg-orange-600 hover:bg-orange-700 rounded-full shadow-lg flex items-center justify-center transition-transform hover:scale-110 z-40">
+        <img src="{{ url_for('static', filename='assets/chatbot_icon.png') }}" alt="Chatbot" class="w-8 h-8">
+    </button>
+</div>
+
+<!-- SOS Dialog -->
+<div id="sosDialog" class="fixed inset-0 bg-black/50 z-50 hidden flex items-center justify-center p-4">
+    <div class="bg-white rounded-2xl p-6 max-w-sm w-full">
+        <div class="text-center">
+            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                <i class="fas fa-exclamation-triangle text-red-600 text-2xl"></i>
+            </div>
+            <h3 class="text-xl font-bold text-red-700 mb-2">SOS Alert Sent</h3>
+            <p class="text-gray-700 mb-4">SOS Alert sent to nearby authorities with your current location.</p>
+            <div class="bg-red-50 border border-red-200 rounded-xl p-4 mb-4">
+                <div class="flex items-center text-red-700">
+                    <i class="fas fa-map-marker-alt mr-2"></i>
+                    <span class="text-sm">Your location has been shared with emergency contacts.</span>
+                </div>
+            </div>
+            <button onclick="closeSOS()" class="bg-orange-600 hover:bg-orange-700 text-white px-6 py-2 rounded-lg font-semibold">OK</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+let userData = null;
+
+// Tab switching// Show specific tab content
+function showTab(tabName) {
+    window.showTabContent = showTab; // Make function available globally
+    // Hide all tabs
+    const tabs = document.querySelectorAll('.tab-content');
+    tabs.forEach(tab => tab.classList.add('hidden'));
+    
+    // Show selected tab
+    const selectedTab = document.getElementById(tabName + 'Tab');
+    if (selectedTab) {
+        selectedTab.classList.remove('hidden');
+    }
+    
+    // Update navigation
+    const navItems = document.querySelectorAll('.nav-item');
+    navItems.forEach(item => {
+        item.classList.remove('text-orange-600');
+        item.classList.add('text-gray-600');
+    });
+    
+    const activeNav = document.querySelector(`[data-tab="${tabName}"]`);
+    if (activeNav) {
+        activeNav.classList.remove('text-gray-600');
+        activeNav.classList.add('text-orange-600');
+    }
+    
+    // Load data for specific tabs
+    if (tabName === 'sanskrti') {
+        loadLandmarks();
+    } else if (tabName === 'seva') {
+        loadSevaQuests();
+    } else if (tabName === 'profile') {
+        loadUserProfile();
+    }
+}
+
+// Load landmarks for Sanskrti tab
+async function loadLandmarks() {
+    try {
+        const response = await fetch('/api/landmarks');
+        const data = await response.json();
+        
+        if (data.success) {
+            displayLandmarks(data.landmarks);
+            updatePunyaDisplay();
+        }
+    } catch (error) {
+        console.error('Error loading landmarks:', error);
+    }
+}
+
+// Display landmarks in the grid
+function displayLandmarks(landmarks) {
+    const grid = document.getElementById('landmarksGrid');
+    grid.innerHTML = '';
+    
+    landmarks.forEach(landmark => {
+        const landmarkCard = createLandmarkCard(landmark);
+        grid.appendChild(landmarkCard);
+    });
+}
+
+// Create landmark card element
+function createLandmarkCard(landmark) {
+    const card = document.createElement('div');
+    card.className = 'bg-white rounded-2xl shadow-custom overflow-hidden card-hover';
+    
+    card.innerHTML = `
+        <div class="relative h-48">
+            <img src="/${landmark.image}" alt="${landmark.title}" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent"></div>
+            ${landmark.visited ? '<div class="absolute top-3 left-3 bg-green-600 text-white px-2 py-1 rounded-full text-xs font-semibold"><i class="fas fa-check mr-1"></i>Visited</div>' : ''}
+            <div class="absolute bottom-3 left-3 right-3 text-white">
+                <h3 class="font-bold text-lg font-playfair">${landmark.title}</h3>
+                <p class="text-sm opacity-90">${landmark.subtitle}</p>
+            </div>
+        </div>
+        <div class="p-4">
+            <p class="text-gray-600 text-sm mb-4 line-clamp-3">${landmark.story.substring(0, 120)}...</p>
+            <div class="flex justify-between items-center">
+                <div class="flex items-center text-orange-600">
+                    <i class="fas fa-leaf mr-1"></i>
+                    <span class="text-sm font-semibold">${landmark.punya_points} Punya</span>
+                </div>
+                <button onclick="markVisited('${landmark.id}')" 
+                        class="px-4 py-2 rounded-lg font-semibold text-sm transition-colors ${landmark.visited ? 'bg-green-100 text-green-700 cursor-not-allowed' : 'bg-orange-600 text-white hover:bg-orange-700'}"
+                        ${landmark.visited ? 'disabled' : ''}>
+                    ${landmark.visited ? 'Visited ✓' : 'Mark Visited'}
+                </button>
+            </div>
+        </div>
+    `;
+    
+    return card;
+}
+
+// Mark landmark as visited
+async function markVisited(landmarkId) {
+    try {
+        const response = await fetch('/api/mark_visited', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ place_id: landmarkId })
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            showMessage('Landmark visited! +5 Punya points earned', 'success');
+            loadLandmarks(); // Reload to update UI
+        } else {
+            showMessage(data.message, 'error');
+        }
+    } catch (error) {
+        showMessage('Error marking landmark as visited', 'error');
+    }
+}
+
+// Load seva quests
+async function loadSevaQuests() {
+    try {
+        const response = await fetch('/api/seva-quests');
+        const data = await response.json();
+        
+        if (data.success) {
+            displaySevaQuests(data.seva_quests);
+            document.getElementById('sevaPoints').textContent = data.user_punya;
+        }
+    } catch (error) {
+        console.error('Error loading seva quests:', error);
+    }
+}
+
+// Display seva quests
+function displaySevaQuests(quests) {
+    const container = document.getElementById('sevaQuests');
+    container.innerHTML = '';
+    
+    quests.forEach(quest => {
+        const questCard = createSevaQuestCard(quest);
+        container.appendChild(questCard);
+    });
+}
+
+// Create seva quest card
+function createSevaQuestCard(quest) {
+    const card = document.createElement('div');
+    card.className = 'bg-white rounded-2xl p-6 shadow-custom';
+    
+    card.innerHTML = `
+        <div class="flex items-start space-x-4">
+            <div class="w-12 h-12 rounded-xl flex items-center justify-center" style="background-color: ${quest.color}20;">
+                <i class="${quest.web_icon} text-xl" style="color: ${quest.color};"></i>
+            </div>
+            <div class="flex-1">
+                <h3 class="font-bold text-lg text-gray-800 mb-2">${quest.title}</h3>
+                <p class="text-gray-600 text-sm mb-4">${quest.description}</p>
+                
+                <div class="bg-gray-50 rounded-lg p-3 mb-4">
+                    <div class="flex items-center justify-between text-sm">
+                        <div class="flex items-center text-orange-600">
+                            <i class="fas fa-trophy mr-1"></i>
+                            <span class="font-semibold">${quest.punya} Punya Points</span>
+                        </div>
+                        <div class="flex items-center text-purple-600">
+                            <i class="fas fa-medal mr-1"></i>
+                            <span class="font-semibold">${quest.badge}</span>
+                        </div>
+                    </div>
+                    ${quest.duration ? `<div class="text-xs text-gray-500 mt-2"><i class="fas fa-clock mr-1"></i>${quest.duration} • ${quest.location}</div>` : ''}
+                </div>
+                
+                <button onclick="completeSevaQuest('${quest.id}')" 
+                        class="w-full py-3 rounded-xl font-semibold transition-colors ${quest.completed ? 'bg-gray-200 text-gray-500 cursor-not-allowed' : 'text-white hover:opacity-90'}"
+                        style="background-color: ${quest.completed ? '#e5e7eb' : quest.color};"
+                        ${quest.completed ? 'disabled' : ''}>
+                    ${quest.completed ? 'Completed ✓' : 'I have completed this Seva'}
+                </button>
+            </div>
+        </div>
+    `;
+    
+    return card;
+}
+
+// Complete seva quest
+async function completeSevaQuest(questId) {
+    try {
+        const response = await fetch(`/api/seva-quests/${questId}/complete`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            }
+        });
+        
+        const data = await response.json();
+        
+        if (data.success) {
+            showMessage(data.message, 'success');
+            loadSevaQuests(); // Reload to update UI
+        } else {
+            showMessage(data.message, 'error');
+        }
+    } catch (error) {
+        showMessage('Error completing seva quest', 'error');
+    }
+}
+
+// Load user profile
+async function loadUserProfile() {
+    try {
+        const response = await fetch('/api/user_data');
+        const data = await response.json();
+        
+        if (data.success) {
+            userData = data.user;
+            displayUserProfile(userData);
+        }
+    } catch (error) {
+        console.error('Error loading user profile:', error);
+    }
+}
+
+// Display user profile
+function displayUserProfile(user) {
+    document.getElementById('userName').textContent = user.name;
+    document.getElementById('userEmail').textContent = user.email;
+    document.getElementById('sangamId').textContent = `SANGAM ID: ${user.sangam_id}`;
+    document.getElementById('profilePunya').textContent = user.punya || 0;
+    document.getElementById('badgeCount').textContent = user.badges ? user.badges.length : 0;
+    document.getElementById('visitedCount').textContent = user.visited_places ? user.visited_places.length : 0;
+    
+    // Display badges
+    const badgesList = document.getElementById('badgesList');
+    if (user.badges && user.badges.length > 0) {
+        badgesList.innerHTML = '';
+        user.badges.forEach(badge => {
+            const badgeElement = document.createElement('div');
+            badgeElement.className = 'bg-purple-100 text-purple-700 px-3 py-2 rounded-lg text-sm font-semibold text-center';
+            badgeElement.innerHTML = `<i class="fas fa-medal mr-1"></i>${badge}`;
+            badgesList.appendChild(badgeElement);
+        });
+    }
+}
+
+// Update punya display in Sanskrti tab
+async function updatePunyaDisplay() {
+    try {
+        const response = await fetch('/api/user_data');
+        const data = await response.json();
+        
+        if (data.success) {
+            document.getElementById('punyaPoints').textContent = data.user.punya || 0;
+        }
+    } catch (error) {
+        console.error('Error updating punya display:', error);
+    }
+}
+
+// Show message notification
+function showMessage(message, type) {
+    const messageDiv = document.createElement('div');
+    messageDiv.className = `fixed top-4 right-4 z-50 px-6 py-3 rounded-lg shadow-lg text-white font-semibold ${type === 'success' ? 'bg-green-500' : 'bg-red-500'}`;
+    messageDiv.textContent = message;
+    
+    document.body.appendChild(messageDiv);
+    
+    setTimeout(() => {
+        messageDiv.remove();
+    }, 3000);
+}
+
+// SOS functionality
+function showSOSDialog() {
+    // Send SOS alert to backend
+    fetch('/api/sos', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        }
+    }).then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            document.getElementById('sosDialog').classList.remove('hidden');
+        }
+    }).catch(error => {
+        console.error('Error sending SOS:', error);
+        showMessage('Error sending SOS alert', 'error');
+    });
+}
+
+function closeSOS() {
+    document.getElementById('sosDialog').classList.add('hidden');
+}
+
+// Chatbot functionality
+function openChatbot() {
+    window.open('/chatbot', '_blank', 'width=400,height=600');
+}
+
+// Logout
+function logout() {
+    window.location.href = '/logout';
+}
+
+// Initialize with home tab and load initial data
+document.addEventListener('DOMContentLoaded', function() {
+    showTab('{{ active_tab }}');
+    updatePunyaDisplay();
+});
+</script>
+{% endblock %}

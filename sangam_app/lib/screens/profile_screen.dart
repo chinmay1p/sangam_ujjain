@@ -138,32 +138,33 @@ class ProfileScreen extends StatelessWidget {
                           borderRadius: BorderRadius.circular(8),
                           border: Border.all(color: Colors.blue.shade300),
                         ),
-                        child: Row(
-                          children: [
-                            Expanded(
-                              child: SelectableText(
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              SelectableText(
                                 user.id,
                                 style: const TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.bold,
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w600,
                                   fontFamily: 'monospace',
                                 ),
                               ),
-                            ),
-                            Flexible(
-                              child: IconButton(
-                              icon: const Icon(Icons.copy),
-                              onPressed: () {
-                                Clipboard.setData(ClipboardData(text: user.id));
-                                ScaffoldMessenger.of(context).showSnackBar(
-                                  const SnackBar(
-                                    content: Text('S.A.N.G.A.M ID copied to clipboard!'),
-                                    backgroundColor: Colors.green,
-                                  ),
-                                );
-                              },
-                            )),
-                          ],
+                              const SizedBox(width: 12),
+                              IconButton(
+                                icon: const Icon(Icons.copy),
+                                onPressed: () {
+                                  Clipboard.setData(ClipboardData(text: user.id));
+                                  ScaffoldMessenger.of(context).showSnackBar(
+                                    const SnackBar(
+                                      content: Text('S.A.N.G.A.M ID copied to clipboard!'),
+                                      backgroundColor: Colors.green,
+                                    ),
+                                  );
+                                },
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       const SizedBox(height: 8),

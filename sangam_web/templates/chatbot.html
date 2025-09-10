@@ -1,0 +1,169 @@
+{% extends "base.html" %}
+
+{% block title %}Sangam Sathi - Chatbot{% endblock %}
+
+{% block content %}
+<div class="h-screen flex flex-col bg-gray-50">
+    <!-- Header -->
+    <div class="bg-orange-600 text-white p-4 flex items-center">
+        <button onclick="window.close()" class="mr-4 text-white hover:text-orange-200">
+            <i class="fas fa-arrow-left text-xl"></i>
+        </button>
+        <img src="{{ url_for('static', filename='assets/chatbot_icon.png') }}" alt="Sangam Sathi" class="w-8 h-8 rounded-full mr-3">
+        <h1 class="text-xl font-semibold font-poppins">Sangam Sathi</h1>
+    </div>
+    
+    <!-- Chat Messages Container -->
+    <div class="flex-1 overflow-y-auto p-4" id="messagesContainer">
+        <!-- Welcome message -->
+        <div class="mb-4">
+            <div class="flex items-start">
+                <div class="flex-shrink-0 mr-3">
+                    <img src="{{ url_for('static', filename='assets/chatbot_icon.png') }}" alt="Bot" class="w-8 h-8 rounded-full">
+                </div>
+                <div class="bg-gray-200 text-gray-800 px-4 py-3 rounded-2xl rounded-tl-lg max-w-xs">
+                    <p class="text-sm">Namaste! I am Sangam Sathi. How can I help you plan your Ujjain yatra?</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Loading indicator -->
+    <div id="loadingIndicator" class="px-4 pb-2 hidden">
+        <div class="flex items-center">
+            <div class="flex-shrink-0 mr-3">
+                <img src="{{ url_for('static', filename='assets/chatbot_icon.png') }}" alt="Bot" class="w-8 h-8 rounded-full">
+            </div>
+            <div class="bg-gray-200 px-4 py-3 rounded-2xl rounded-tl-lg">
+                <div class="flex space-x-1">
+                    <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce"></div>
+                    <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: 0.1s"></div>
+                    <div class="w-2 h-2 bg-gray-500 rounded-full animate-bounce" style="animation-delay: 0.2s"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Input Container -->
+    <div class="bg-white border-t border-gray-200 p-4">
+        <div class="flex items-center space-x-3">
+            <input 
+                type="text" 
+                id="messageInput" 
+                placeholder="Ask a question..."
+                class="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-orange-500 focus:border-orange-500 outline-none"
+                onkeypress="handleKeyPress(event)"
+            >
+            <button 
+                id="sendButton"
+                onclick="sendMessage()" 
+                class="w-12 h-12 bg-orange-600 hover:bg-orange-700 text-white rounded-full flex items-center justify-center transition-colors"
+            >
+                <i class="fas fa-paper-plane"></i>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+let isLoading = false;
+
+function handleKeyPress(event) {
+    if (event.key === 'Enter' && !isLoading) {
+        sendMessage();
+    }
+}
+
+async function sendMessage() {
+    const input = document.getElementById('messageInput');
+    const message = input.value.trim();
+    
+    if (!message || isLoading) return;
+    
+    // Add user message to chat
+    addMessage(message, true);
+    input.value = '';
+    
+    // Show loading indicator
+    showLoading(true);
+    
+    try {
+        const response = await fetch('/api/chatbot', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message: message })
+        });
+        
+        const data = await response.json();
+        
+        // Add bot response
+        addMessage(data.response || 'Sorry, I could not understand that.', false);
+        
+    } catch (error) {
+        addMessage('Sorry, I am experiencing technical difficulties. Please try again later.', false);
+    } finally {
+        showLoading(false);
+    }
+}
+
+function addMessage(text, isUser) {
+    const container = document.getElementById('messagesContainer');
+    const messageDiv = document.createElement('div');
+    messageDiv.className = 'mb-4';
+    
+    if (isUser) {
+        messageDiv.innerHTML = `
+            <div class="flex items-start justify-end">
+                <div class="bg-orange-600 text-white px-4 py-3 rounded-2xl rounded-tr-lg max-w-xs mr-3">
+                    <p class="text-sm">${text}</p>
+                </div>
+                <div class="flex-shrink-0">
+                    <div class="w-8 h-8 bg-orange-100 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user text-orange-600 text-sm"></i>
+                    </div>
+                </div>
+            </div>
+        `;
+    } else {
+        messageDiv.innerHTML = `
+            <div class="flex items-start">
+                <div class="flex-shrink-0 mr-3">
+                    <img src="{{ url_for('static', filename='assets/chatbot_icon.png') }}" alt="Bot" class="w-8 h-8 rounded-full">
+                </div>
+                <div class="bg-gray-200 text-gray-800 px-4 py-3 rounded-2xl rounded-tl-lg max-w-xs">
+                    <p class="text-sm">${text}</p>
+                </div>
+            </div>
+        `;
+    }
+    
+    container.appendChild(messageDiv);
+    container.scrollTop = container.scrollHeight;
+}
+
+function showLoading(show) {
+    isLoading = show;
+    const loadingIndicator = document.getElementById('loadingIndicator');
+    const sendButton = document.getElementById('sendButton');
+    
+    if (show) {
+        loadingIndicator.classList.remove('hidden');
+        sendButton.classList.add('opacity-50', 'cursor-not-allowed');
+    } else {
+        loadingIndicator.classList.add('hidden');
+        sendButton.classList.remove('opacity-50', 'cursor-not-allowed');
+    }
+    
+    // Scroll to bottom
+    const container = document.getElementById('messagesContainer');
+    container.scrollTop = container.scrollHeight;
+}
+
+// Focus input on load
+document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('messageInput').focus();
+});
+</script>
+{% endblock %}

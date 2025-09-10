@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Sangam Ujjain - Sacred Journey to the Divine City{% endblock %}</title>
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="{% block description %}Experience the divine journey to Ujjain, home of Mahakaleshwar Jyotirlinga. Your spiritual companion for Kumbh Mela 2028 and sacred temple visits.{% endblock %}">
+    <meta name="keywords" content="Ujjain, Mahakaleshwar, Kumbh Mela, Jyotirlinga, Pilgrimage, Spiritual Journey, Sacred Temples, Shipra River">
+    <meta name="author" content="Sangam Ujjain">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://sangamujjain.com{% block canonical %}{% endblock %}">
+    
+    <!-- Open Graph Meta Tags -->
+    <meta property="og:title" content="{% block og_title %}Sangam Ujjain - Sacred Journey to the Divine City{% endblock %}">
+    <meta property="og:description" content="{% block og_description %}Experience the divine journey to Ujjain, home of Mahakaleshwar Jyotirlinga. Your spiritual companion for Kumbh Mela 2028.{% endblock %}">
+    <meta property="og:image" content="{{ url_for('static', filename='assets/ujjain_city_1.png', _external=True) }}">
+    <meta property="og:url" content="https://sangamujjain.com{% block og_url %}{% endblock %}">
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Sangam Ujjain">
+    
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{% block twitter_title %}Sangam Ujjain - Sacred Journey to the Divine City{% endblock %}">
+    <meta name="twitter:description" content="{% block twitter_description %}Experience the divine journey to Ujjain, home of Mahakaleshwar Jyotirlinga. Your spiritual companion for Kumbh Mela 2028.{% endblock %}">
+    <meta name="twitter:image" content="{{ url_for('static', filename='assets/ujjain_city_1.png', _external=True) }}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='assets/logo.png') }}">
+    <link rel="apple-touch-icon" href="{{ url_for('static', filename='assets/logo.png') }}">
+    
+    <!-- Theme Color -->
+    <meta name="theme-color" content="#ea580c">
+    <meta name="msapplication-TileColor" content="#ea580c">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+    
+    <!-- Critical inline styles for immediate rendering -->
+    <style>
+        /* CSS Variables */
+        :root {
+            --primary-orange: #ea580c;
+            --secondary-orange: #fb923c;
+            --accent-gold: #f59e0b;
+            --deep-saffron: #dc2626;
+            --warm-brown: #92400e;
+        }
+        
+        /* Font Families */
+        .font-cinzel { font-family: 'Cinzel', serif !important; }
+        .font-inter { font-family: 'Inter', sans-serif !important; }
+        .font-playfair { font-family: 'Playfair Display', serif !important; }
+        .font-poppins { font-family: 'Inter', sans-serif !important; }
+        
+        /* Text Gradient */
+        .text-gradient {
+            background: linear-gradient(135deg, var(--primary-orange), var(--accent-gold)) !important;
+            -webkit-background-clip: text !important;
+            -webkit-text-fill-color: transparent !important;
+            background-clip: text !important;
+        }
+        
+        /* Custom Shadows */
+        .shadow-custom {
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+        }
+        
+        .shadow-glow {
+            box-shadow: 0 0 20px rgba(234, 88, 12, 0.3) !important;
+        }
+        
+        /* Card Hover Effects */
+        .card-hover {
+            transition: all 0.3s ease !important;
+        }
+        
+        .card-hover:hover {
+            transform: translateY(-5px) !important;
+            box-shadow: 0 20px 40px -10px rgba(0, 0, 0, 0.15) !important;
+        }
+        
+        /* Navigation styles */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 50%;
+            background: var(--accent-gold);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
+        }
+        
+        .nav-link:hover::after,
+        .nav-link.active::after {
+            width: 100%;
+        }
+        
+        /* Responsive fixes */
+        @media (max-width: 768px) {
+            .card-hover:hover {
+                transform: none !important;
+            }
+        }
+    </style>
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-orange': '#ea580c',
+                        'secondary-orange': '#fb923c',
+                        'accent-gold': '#f59e0b',
+                        'deep-saffron': '#dc2626',
+                        'warm-brown': '#92400e',
+                    },
+                    fontFamily: {
+                        'cinzel': ['Cinzel', 'serif'],
+                        'inter': ['Inter', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-slate-50 font-inter">
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md shadow-lg transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center space-x-3">
+                    <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Sangam Logo" class="w-10 h-10 rounded-full">
+                    <span class="text-xl font-cinzel font-bold text-gradient">Sangam Ujjain</span>
+                </div>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="/" class="nav-link text-gray-700 hover:text-primary-orange font-medium">
+                        <i class="fas fa-home mr-2"></i>Home
+                    </a>
+                    {% if session.user_id %}
+                        <a href="/main" class="nav-link text-gray-700 hover:text-primary-orange font-medium">
+                            <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
+                        </a>
+                        <a href="#" onclick="showTab('sanskrti')" class="nav-link text-gray-700 hover:text-primary-orange font-medium">
+                            <i class="fas fa-om mr-2"></i>Sanskrti
+                        </a>
+                        <a href="#" onclick="showTab('seva')" class="nav-link text-gray-700 hover:text-primary-orange font-medium">
+                            <i class="fas fa-hands-helping mr-2"></i>Seva
+                        </a>
+                        <a href="/sacred-streams" class="nav-link text-gray-700 hover:text-primary-orange font-medium">
+                            <i class="fas fa-water mr-2"></i>Sacred Streams
+                        </a>
+                        <a href="#" onclick="showTab('profile')" class="nav-link text-gray-700 hover:text-primary-orange font-medium">
+                            <i class="fas fa-user mr-2"></i>Profile
+                        </a>
+                        <a href="/logout" class="bg-primary-orange text-white px-6 py-2 rounded-full hover:bg-orange-700 transition-colors font-medium">Logout</a>
+                    {% else %}
+                        <a href="/login" class="bg-primary-orange text-white px-6 py-2 rounded-full hover:bg-orange-700 transition-colors font-medium">Login</a>
+                    {% endif %}
+                </div>
+                
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-gray-700 hover:text-primary-orange">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Mobile Navigation Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-gray-200 shadow-lg">
+            <div class="px-4 pt-2 pb-3 space-y-1">
+                <a href="/" class="block px-3 py-2 text-gray-700 hover:text-primary-orange font-medium">
+                    <i class="fas fa-home mr-2"></i>Home
+                </a>
+                {% if session.user_id %}
+                    <a href="/main" class="block px-3 py-2 text-gray-700 hover:text-primary-orange font-medium">
+                        <i class="fas fa-tachometer-alt mr-2"></i>Dashboard
+                    </a>
+                    <a href="#" onclick="showTab('sanskrti')" class="block px-3 py-2 text-gray-700 hover:text-primary-orange font-medium">
+                        <i class="fas fa-om mr-2"></i>Sanskrti
+                    </a>
+                    <a href="#" onclick="showTab('seva')" class="block px-3 py-2 text-gray-700 hover:text-primary-orange font-medium">
+                        <i class="fas fa-hands-helping mr-2"></i>Seva
+                    </a>
+                    <a href="/sacred-streams" class="block px-3 py-2 text-gray-700 hover:text-primary-orange font-medium">
+                        <i class="fas fa-water mr-2"></i>Sacred Streams
+                    </a>
+                    <a href="#" onclick="showTab('profile')" class="block px-3 py-2 text-gray-700 hover:text-primary-orange font-medium">
+                        <i class="fas fa-user mr-2"></i>Profile
+                    </a>
+                    <a href="/logout" class="block px-3 py-2 text-primary-orange font-medium">Logout</a>
+                {% else %}
+                    <a href="/login" class="block px-3 py-2 text-primary-orange font-medium">Login</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- About -->
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-4">
+                        <img src="{{ url_for('static', filename='assets/logo.png') }}" alt="Sangam Logo" class="w-12 h-12 rounded-full">
+                        <span class="text-2xl font-cinzel font-bold text-gradient">Sangam Ujjain</span>
+                    </div>
+                    <p class="text-gray-300 mb-4 max-w-md">
+                        Your spiritual companion for the sacred journey to Ujjain, the city of Mahakal. 
+                        Experience the divine energy of one of India's most sacred pilgrimage destinations.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-gray-400 hover:text-primary-orange transition-colors">
+                            <i class="fab fa-facebook-f text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-orange transition-colors">
+                            <i class="fab fa-twitter text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-orange transition-colors">
+                            <i class="fab fa-instagram text-xl"></i>
+                        </a>
+                        <a href="#" class="text-gray-400 hover:text-primary-orange transition-colors">
+                            <i class="fab fa-youtube text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
+                    <ul class="space-y-2">
+                        <li><a href="#temples" class="text-gray-300 hover:text-primary-orange transition-colors">Sacred Temples</a></li>
+                        <li><a href="#kumbh" class="text-gray-300 hover:text-primary-orange transition-colors">Kumbh Mela 2028</a></li>
+                        <li><a href="#services" class="text-gray-300 hover:text-primary-orange transition-colors">Pilgrimage Services</a></li>
+                        <li><a href="/login" class="text-gray-300 hover:text-primary-orange transition-colors">Login</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Contact Info -->
+                <div>
+                    <h3 class="text-lg font-semibold mb-4">Contact</h3>
+                    <ul class="space-y-2 text-gray-300">
+                        <li class="flex items-center">
+                            <i class="fas fa-map-marker-alt mr-2 text-primary-orange"></i>
+                            Ujjain, Madhya Pradesh
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-phone mr-2 text-primary-orange"></i>
+                            +91 12345 67890
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-2 text-primary-orange"></i>
+                            info@sangamujjain.com
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                <p>&copy; 2024 Sangam Ujjain. All rights reserved. | Designed for spiritual seekers and pilgrims.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Removed duplicate chatbot - using the one in main.html instead -->
+
+    <!-- Scripts -->
+    <script>
+        // Mobile menu toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            
+            if (mobileMenuBtn && mobileMenu) {
+                mobileMenuBtn.addEventListener('click', function() {
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+        });
+
+        // Tab navigation function for unified navigation
+        function showTab(tabName) {
+            // If we're not on the main page, redirect to main page with the tab
+            if (window.location.pathname !== '/main') {
+                window.location.href = '/main#' + tabName;
+                return;
+            }
+            
+            // If showTab function exists on main page, use it
+            if (typeof window.showTabContent === 'function') {
+                window.showTabContent(tabName);
+            }
+        }
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('bg-white/98');
+                navbar.classList.remove('bg-white/95');
+            } else {
+                navbar.classList.add('bg-white/95');
+                navbar.classList.remove('bg-white/98');
+            }
+        });
+        
+        // Chatbot functionality
+        function toggleChatbot() {
+            const widget = document.getElementById('chatbot-widget');
+            widget.classList.toggle('hidden');
+        }
+        
+        function sendMessage() {
+            const input = document.getElementById('chatbot-input');
+            const message = input.value.trim();
+            if (!message) return;
+            
+            const messagesContainer = document.getElementById('chatbot-messages');
+            
+            // Add user message
+            messagesContainer.innerHTML += `
+                <div class="flex items-start space-x-2 justify-end">
+                    <div class="bg-primary-orange text-white rounded-lg p-3 max-w-xs">
+                        <p class="text-sm">${message}</p>
+                    </div>
+                </div>
+            `;
+            
+            input.value = '';
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            
+            // Send to backend
+            fetch('/api/chatbot', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ message: message })
+            })
+            .then(response => response.json())
+            .then(data => {
+                messagesContainer.innerHTML += `
+                    <div class="flex items-start space-x-2">
+                        <img src="{{ url_for('static', filename='assets/chatbot_icon.png') }}" alt="Bot" class="w-6 h-6 rounded-full">
+                        <div class="bg-gray-100 rounded-lg p-3 max-w-xs">
+                            <p class="text-sm">${data.response}</p>
+                        </div>
+                    </div>
+                `;
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        
+        // Enter key for chatbot
+        document.getElementById('chatbot-input')?.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendMessage();
+            }
+        });
+    </script>
+
+    {% block scripts %}{% endblock %}
+
+    {% if not on_login_page %}
+        <!-- Temporarily disabled to fix infinite reload -->
+        <!-- <script src="{{ url_for('static', filename='js/main.js') }}"></script> -->
+    {% endif %}
+</body>
+</html>
